@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.maze.staticobjects;
+
+import com.maze.game.GameObject;
+import java.awt.Color;
 
 /**
  *
  * @author Guido
  */
-public abstract class Gadget extends StaticObject {
-
-    
-    
-    public void use() {
-
-    }
+public class Ground extends GameObject {
+    public Color color = Color.CYAN;
 }

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.staticobject.weapons;
+package com.maze.staticobjects.obstacles;
 
-import com.maze.staticobjects.Weapon;
+import com.maze.staticobjects.Obstacle;
 
 /**
  *
  * @author Guido
  */
-public class Bazooka extends Weapon {
-
+public class Wall extends Obstacle {
+    private String imagePath = "hodor.jpg";
 }

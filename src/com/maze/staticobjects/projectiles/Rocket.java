@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.staticobject.obstacles;
+package com.maze.staticobjects.projectiles;
 
-import com.maze.staticobjects.Obstacle;
+import com.maze.staticobjects.Projectile;
 
 /**
  *
  * @author Guido
  */
-public class Wall extends Obstacle {
+public class Rocket extends Projectile {
 
 }

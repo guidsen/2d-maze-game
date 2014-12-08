@@ -3,14 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.staticobject.projectiles;
+package com.maze.staticobjects.gadgets;
 
-import com.maze.staticobjects.Projectile;
+import com.maze.staticobjects.Gadget;
+import java.awt.Color;
 
 /**
  *
  * @author Guido
  */
-public class Rocket extends Projectile {
+public class Helper extends Gadget {
 
+    private Color color = Color.GREEN;
+
+    public void showRoute() {
+
+    }
 }

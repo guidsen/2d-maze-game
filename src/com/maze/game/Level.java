@@ -5,40 +5,62 @@
  */
 package com.maze.game;
 
+import com.maze.movableobjects.Player;
+import com.maze.staticobjects.Ground;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import javax.swing.JComponent;
-import objects.Player;
 
 /**
  *
  * @author Guido
  */
-public abstract class Level extends JComponent {
+public class Level extends JComponent {
 
-    private GameObject[][] gameObjects;
+    private static int HEIGHT = 15;
+    private static int WIDTH = 15;
+    private GameObject[][] gameObjects = new GameObject[HEIGHT][WIDTH];
     public Player player;
     private ArrayList<Map> maps;
     protected GameManager gameManager;
-    private int height;
-    private int width;
     private int difficulty;
+    private int spawnY = 1;
+    private int spawnX = 1;
+
+    public Level() {
+        this.player = new Player(this.spawnY, this.spawnX);
+        this.setPreferredSize(new Dimension(WIDTH * GameObject.SIZE, HEIGHT * GameObject.SIZE));
+    }
 
     @Override
     public void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                gameObjects[y][x].draw(g);
+            }
+        }
+
+        this.player.draw(g);
     }
 
-    public void setSpawn(int posX, int posY) {
-
+    public void setSpawn(int spawnY, int spawnX) {
+        this.spawnY = spawnY;
+        this.spawnX = spawnX;
     }
 
-    public void setGameObject(GameObject object, int posX, int posY) {
-
+    public void setGameObject(GameObject object, int posY, int posX) {
+        gameObjects[posY][posX] = object;
+        object.setPosition(posY, posX);
     }
 
-    public GameObject getGameObject() {
-        return null;
+    public GameObject getGameObject(int posY, int posX) {
+        return gameObjects[posY][posX];
     }
 
     public void build() {

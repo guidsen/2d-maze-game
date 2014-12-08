@@ -6,7 +6,9 @@
 package com.maze.movableobjects;
 
 import com.maze.game.Direction;
+import static com.maze.game.GameObject.SIZE;
 import com.maze.staticobjects.Weapon;
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -18,11 +20,13 @@ public class Player extends MovableObject {
     private Direction currentDirection;
     private Weapon weapon;
 
-    public Player(int spawnX, int spawnY) {
-
+    public Player(int spawnY, int spawnX) {
+        this.setPosition(spawnY, spawnX);
     }
 
+    @Override
     public void draw(Graphics g) {
-
+        g.setColor(Color.BLACK);
+        g.fillRect(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
     }
 }

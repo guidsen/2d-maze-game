@@ -5,24 +5,29 @@
  */
 package com.maze.game;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Random;
+
 /**
  *
  * @author Guido
  */
 public abstract class GameObject {
 
-    private final int SIZE = 30;
+    public static final int SIZE = 30;
     private String imagePath;
-    private int posX;
-    private int posY;
+    public int posY;
+    public int posX;
 
-    public void draw() {
-
+    public void draw(Graphics g) {
+        g.setColor(Color.PINK);
+        g.fillRect(this.posY * SIZE, this.posX * SIZE, SIZE, SIZE);
     }
 
-    public void setPosition(int posX, int posY) {
-        this.posX = posX;
+    public void setPosition(int posY, int posX) {
         this.posY = posY;
+        this.posX = posX;
     }
 
 }

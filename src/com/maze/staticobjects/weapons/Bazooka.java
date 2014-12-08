@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.staticobject.gadgets;
+package com.maze.staticobjects.weapons;
 
-import com.maze.staticobjects.Gadget;
+import com.maze.staticobjects.Weapon;
 
 /**
  *
  * @author Guido
  */
-public class Helper extends Gadget {
+public class Bazooka extends Weapon {
 
-    public void showRoute() {
-
-    }
 }
