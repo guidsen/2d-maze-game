@@ -27,6 +27,6 @@ public class Player extends MovableObject {
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);
-        g.fillRect(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+        g.fillOval(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
     }
 }

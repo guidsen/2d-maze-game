@@ -20,11 +20,12 @@ public abstract class MovableObject extends GameObject {
 
     public void move(int direction) {
         if (direction == KeyEvent.VK_LEFT) {
+            this.left();
         }
     }
 
-    public void left(Level level) {
-        level.player.posY -= 1;
+    public void left() {
+        this.posY -= 1;
     }
 
     public void right() {

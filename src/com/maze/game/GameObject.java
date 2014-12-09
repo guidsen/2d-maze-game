@@ -19,6 +19,7 @@ public abstract class GameObject {
     private String imagePath;
     public int posY;
     public int posX;
+    public int index;
 
     public void draw(Graphics g) {
         g.setColor(Color.PINK);

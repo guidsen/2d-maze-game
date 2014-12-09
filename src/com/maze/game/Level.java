@@ -42,13 +42,20 @@ public class Level extends JComponent {
 
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
-                gameObjects[y][x].draw(g);
+                paint(g, x, y);
             }
         }
 
         this.player.draw(g);
     }
 
+    public void paintComponent(Graphics g, int x, int y) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        gameObjects[y][x].draw(g);
+    }
+   
     public void setSpawn(int spawnY, int spawnX) {
         this.spawnY = spawnY;
         this.spawnX = spawnX;

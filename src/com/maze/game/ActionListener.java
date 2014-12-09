@@ -24,6 +24,7 @@ public class ActionListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        this.manager.getLevel().player.move(e.getKeyCode());
     }
 
     @Override

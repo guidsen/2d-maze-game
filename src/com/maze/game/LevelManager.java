@@ -32,7 +32,6 @@ public class LevelManager {
 
     public void load() throws InstantiationException, IllegalAccessException {
         this.level = new Level();
-
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
                 for (String key : abbrs.keySet()) {
@@ -40,6 +39,7 @@ public class LevelManager {
                 }
             }
         }
+        this.frame.add(this.level);
     }
 
     public void start() {
@@ -54,5 +54,9 @@ public class LevelManager {
 
     public static GameObject getObject() {
         return null;
+    }
+    
+    public Level getLevel() {
+        return this.level;
     }
 }
