@@ -19,7 +19,7 @@ public class LevelManager {
 
     private HashMap<String, GameObject> abbrs = new HashMap<>();
     private int difficulty = 1;
-    private Level level;
+    public static Level level;
     private String basePath = "blabla/";
     private JFrame frame;
 

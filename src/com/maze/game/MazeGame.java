@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  * @author Guido
  */
 public class MazeGame {
-
+    public static LevelManager manager;
     /**
      * @param args the command line arguments
      */
@@ -24,7 +24,7 @@ public class MazeGame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        LevelManager manager = new LevelManager(frame);
+        manager = new LevelManager(frame);
         manager.start();
         frame.addKeyListener(new ActionListener(manager));
         frame.pack();

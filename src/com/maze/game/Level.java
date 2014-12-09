@@ -22,7 +22,7 @@ public class Level extends JComponent {
 
     private static int HEIGHT = 15;
     private static int WIDTH = 15;
-    private GameObject[][] gameObjects = new GameObject[HEIGHT][WIDTH];
+    private static GameObject[][] gameObjects = new GameObject[HEIGHT][WIDTH];
     public Player player;
     private ArrayList<Map> maps;
     protected GameManager gameManager;
@@ -36,24 +36,21 @@ public class Level extends JComponent {
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {        
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
-                paint(g, x, y);
+                this.gameObjects[y][x].draw(g);
             }
         }
 
         this.player.draw(g);
     }
 
-    public void paintComponent(Graphics g, int x, int y) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        gameObjects[y][x].draw(g);
+    public static void paintGameObject(int x, int y) {
+        gameObjects[y][x].draw(MazeGame.manager.level.getGraphics());
     }
    
     public void setSpawn(int spawnY, int spawnX) {
