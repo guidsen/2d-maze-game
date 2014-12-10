@@ -11,9 +11,11 @@ package com.maze.staticobjects;
  */
 public abstract class Gadget extends StaticObject {
 
-    
-    
     public void use() {
 
+    }
+
+    public boolean onCollision() {
+        return true;
     }
 }

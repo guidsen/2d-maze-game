@@ -19,4 +19,8 @@ public abstract class Weapon extends StaticObject {
     public void fire(Direction direction) {
 
     }
+    
+    public boolean onCollision() {
+        return true;
+    }
 }

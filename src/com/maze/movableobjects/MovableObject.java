@@ -9,6 +9,7 @@ import com.maze.game.Direction;
 import com.maze.game.GameObject;
 import com.maze.game.Level;
 import com.maze.game.MazeGame;
+import com.maze.staticobjects.StaticObject;
 import java.awt.event.KeyEvent;
 
 /**
@@ -21,8 +22,8 @@ public abstract class MovableObject extends GameObject {
 
     public void move(int direction) {
         Level.paintGameObject(this.posX, this.posY);
-        
-        switch(direction) {
+
+        switch (direction) {
             case KeyEvent.VK_LEFT:
                 this.left();
                 break;
@@ -36,24 +37,56 @@ public abstract class MovableObject extends GameObject {
                 this.down();
                 break;
         }
-        
+
         Level.paintGameObject(this.posX, this.posY);
         this.draw(MazeGame.manager.level.getGraphics());
     }
 
     public void left() {
-        this.posX -= 1;
+        GameObject obj = Level.getGameObject(this.posY, this.posX - 1);
+        if (obj instanceof StaticObject) {
+            StaticObject staticObj = (StaticObject) obj;
+            if (staticObj.onCollision()) {
+                this.posX -= 1;
+            }
+        } else {
+            this.posX -= 1;
+        }
     }
 
     public void right() {
-        this.posX += 1;
+        GameObject obj = Level.getGameObject(this.posY, this.posX + 1);
+        if (obj instanceof StaticObject) {
+            StaticObject staticObj = (StaticObject) obj;
+            if (staticObj.onCollision()) {
+                this.posX += 1;
+            }
+        } else {
+            this.posX += 1;
+        }
     }
 
     public void up() {
-        this.posY -= 1;
+        GameObject obj = Level.getGameObject(this.posY - 1, this.posX);
+        if (obj instanceof StaticObject) {
+            StaticObject staticObj = (StaticObject) obj;
+            if (staticObj.onCollision()) {
+                this.posY -= 1;
+            }
+        } else {
+            this.posY -= 1;
+        }
     }
 
     public void down() {
-        this.posY += 1;
+        GameObject obj = Level.getGameObject(this.posY + 1, this.posX);
+        if (obj instanceof StaticObject) {
+            StaticObject staticObj = (StaticObject) obj;
+            if (staticObj.onCollision()) {
+                this.posY += 1;
+            }
+        } else {
+            this.posY += 1;
+        }
     }
 }

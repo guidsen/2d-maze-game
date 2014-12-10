@@ -5,6 +5,7 @@
  */
 package com.maze.game;
 
+import com.maze.staticobjects.Ground;
 import com.maze.staticobjects.gadgets.Helper;
 import com.maze.staticobjects.obstacles.Wall;
 import java.util.HashMap;
@@ -34,9 +35,10 @@ public class LevelManager {
         this.level = new Level();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                for (String key : abbrs.keySet()) {
-                    this.level.setGameObject(abbrs.get(key).getClass().newInstance(), x, y);
-                }
+                this.level.setGameObject(new Ground(), x, y);
+//                for (String key : abbrs.keySet()) {
+//                    this.level.setGameObject(abbrs.get(key).getClass().newInstance(), x, y);
+//                }
             }
         }
         this.frame.add(this.level);

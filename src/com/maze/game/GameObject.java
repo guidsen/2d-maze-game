@@ -22,10 +22,10 @@ public abstract class GameObject {
     public int posY;
     public int posX;
     public int index;
-    private Color color;
+    protected Color color;
 
     public void draw(Graphics g) {
-        if(color == null) {
+        if (color == null) {
             Random r = new Random();
             //color = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
             color = Color.PINK;

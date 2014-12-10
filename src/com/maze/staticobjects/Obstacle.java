@@ -13,4 +13,9 @@ public abstract class Obstacle extends StaticObject {
 
     private boolean destroyable;
     private int damaged;
+    private boolean blocked = true;
+
+    public boolean onCollision() {
+        return !this.blocked;
+    }
 }

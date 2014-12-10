@@ -13,11 +13,11 @@ import com.maze.game.GameObject;
  */
 public abstract class StaticObject extends GameObject {
 
-    public void dissapear() {
-
+    public boolean onCollision() {
+        return true;
     }
 
-    public void onCollision() {
+    public void dissapear() {
 
     }
 
