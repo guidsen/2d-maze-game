@@ -6,11 +6,21 @@
 package com.maze.staticobjects.weapons;
 
 import com.maze.staticobjects.Weapon;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Guido
  */
 public class Bazooka extends Weapon {
-
+    public Bazooka() {
+        super.color = Color.RED;
+    }
+    
+    @Override
+    public void onStand() {
+        JOptionPane.showMessageDialog(null, "Pak bazooka op.");
+        this.dissapear();
+    }
 }

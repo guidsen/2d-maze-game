@@ -6,6 +6,7 @@
 package com.maze.staticobjects;
 
 import com.maze.game.GameObject;
+import com.maze.game.Level;
 
 /**
  *
@@ -18,10 +19,7 @@ public abstract class StaticObject extends GameObject {
     }
 
     public void dissapear() {
-
-    }
-
-    public void onStand() {
-
+        System.out.println("Dissapear.");
+        Level.removeGameObject(this.posY, this.posX);
     }
 }

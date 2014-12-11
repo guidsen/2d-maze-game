@@ -7,7 +7,9 @@ package com.maze.game;
 
 import com.maze.movableobjects.Player;
 import com.maze.staticobjects.Finish;
+import com.maze.staticobjects.Ground;
 import com.maze.staticobjects.obstacles.Wall;
+import com.maze.staticobjects.weapons.Bazooka;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,7 +22,7 @@ import javax.swing.JComponent;
  * @author Guido
  */
 public class Level extends JComponent {
-
+    
     private static int HEIGHT = 15;
     private static int WIDTH = 15;
     private static GameObject[][] gameObjects = new GameObject[HEIGHT][WIDTH];
@@ -33,52 +35,57 @@ public class Level extends JComponent {
     private int spawnX = 0;
     private int finishY = 13;
     private int finishX = 12;
-
+    
     public Level() {
         this.player = new Player(this.spawnY, this.spawnX);
         this.finish = new Finish(this.finishY, this.finishX);
         this.setPreferredSize(new Dimension(WIDTH * GameObject.SIZE, HEIGHT * GameObject.SIZE));
     }
-
+    
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         build();
-
+        
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 this.gameObjects[y][x].draw(g);
             }
         }
-
+        
         this.player.draw(g);
         this.finish.draw(g);
     }
-
+    
     public static void paintGameObject(int x, int y) {
         gameObjects[y][x].draw(MazeGame.manager.level.getGraphics());
     }
-
+    
     public void setSpawn(int spawnY, int spawnX) {
         this.spawnY = spawnY;
         this.spawnX = spawnX;
     }
-
+    
     public void setFinish(int finishY, int finishX) {
         this.finishY = finishY;
         this.finishX = finishX;
     }
-
+    
     public void setGameObject(GameObject object, int posY, int posX) {
         gameObjects[posY][posX] = object;
         object.setPosition(posY, posX);
     }
-
+    
+    public static void removeGameObject(int posY, int posX) {
+        gameObjects[posY][posX] = new Ground();
+        paintGameObject(posX, posY);
+    }
+    
     public static GameObject getGameObject(int posY, int posX) {
         return gameObjects[posY][posX];
     }
-
+    
     public void build() {
         setGameObject(new Wall(), 0, 1);
         setGameObject(new Wall(), 0, 2);
@@ -105,6 +112,7 @@ public class Level extends JComponent {
         setGameObject(new Wall(), 2, 9);
         setGameObject(new Wall(), 2, 11);
         setGameObject(new Wall(), 2, 12);
+        setGameObject(new Bazooka(), 2, 14);
         setGameObject(new Wall(), 3, 1);
         setGameObject(new Wall(), 5, 4);
         setGameObject(new Wall(), 5, 5);
