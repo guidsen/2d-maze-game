@@ -23,4 +23,9 @@ public abstract class Weapon extends StaticObject {
     public boolean onCollision() {
         return true;
     }
+    
+    @Override
+    public void onStand() {
+        this.dissapear();
+    }
 }

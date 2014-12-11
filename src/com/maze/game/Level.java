@@ -14,8 +14,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JComponent;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  *
@@ -23,9 +30,9 @@ import javax.swing.JComponent;
  */
 public class Level extends JComponent {
     
-    private static int HEIGHT = 15;
-    private static int WIDTH = 15;
-    private static GameObject[][] gameObjects = new GameObject[HEIGHT][WIDTH];
+    private static int HEIGHT;
+    private static int WIDTH;
+    private static GameObject[][] gameObjects;
     public Player player;
     public Finish finish;
     private ArrayList<Map> maps;
@@ -36,20 +43,13 @@ public class Level extends JComponent {
     private int finishY = 13;
     private int finishX = 12;
     
-    public Level() {
-        this.player = new Player(this.spawnY, this.spawnX);
-        this.finish = new Finish(this.finishY, this.finishX);
-        this.setPreferredSize(new Dimension(WIDTH * GameObject.SIZE, HEIGHT * GameObject.SIZE));
-    }
-    
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        build();
         
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
+        for (int y = 0; y < this.HEIGHT; y++) {
+            for (int x = 0; x < this.WIDTH; x++) {
                 this.gameObjects[y][x].draw(g);                
             }
         }
@@ -58,89 +58,67 @@ public class Level extends JComponent {
         this.finish.draw(g);
     }
     
-    public static void paintGameObject(int x, int y) {
-        gameObjects[y][x].draw(MazeGame.manager.level.getGraphics());
+    public static void paintGameObject(int posY, int posX) {
+        gameObjects[posY][posX].draw(MazeGame.manager.level.getGraphics());
     }
-    
-    public void setSpawn(int spawnY, int spawnX) {
-        this.spawnY = spawnY;
-        this.spawnX = spawnX;
-    }
-    
-    public void setFinish(int finishY, int finishX) {
-        this.finishY = finishY;
-        this.finishX = finishX;
-    }
-    
+
     public void setGameObject(GameObject object, int posY, int posX) {
         gameObjects[posY][posX] = object;
         object.setPosition(posY, posX);
     }
     
-    public static void removeGameObject(int posY, int posX) {
-        gameObjects[posY][posX] = new Ground();
-        paintGameObject(posX, posY);
+    public void removeGameObject(int posY, int posX) {
+        Ground ground = new Ground();
+        ground.setPosition(posY, posX);
+        
+        gameObjects[posY][posX] = ground;
+        
+        paintGameObject(ground.posY, ground.posX);
+        
+        if(player.posY == ground.posY && player.posX == ground.posX) {
+            this.player.draw(MazeGame.manager.level.getGraphics());
+        }
     }
     
     public static GameObject getGameObject(int posY, int posX) {
         return gameObjects[posY][posX];
     }
     
-    public void build() {
-        setGameObject(new Wall(), 0, 1);
-        setGameObject(new Wall(), 0, 2);
-        setGameObject(new Wall(), 0, 3);
-        setGameObject(new Wall(), 0, 5);
-        setGameObject(new Wall(), 0, 6);
-        setGameObject(new Wall(), 0, 7);
-        setGameObject(new Wall(), 0, 8);
-        setGameObject(new Wall(), 0, 9);
-        setGameObject(new Wall(), 0, 10);
-        setGameObject(new Wall(), 0, 11);
-        setGameObject(new Wall(), 0, 12);
-        setGameObject(new Wall(), 0, 13);
-        setGameObject(new Wall(), 1, 3);
-        setGameObject(new Wall(), 1, 7);
-        setGameObject(new Wall(), 1, 9);
-        setGameObject(new Wall(), 1, 11);
-        setGameObject(new Wall(), 1, 12);
-        setGameObject(new Wall(), 1, 13);
-        setGameObject(new Wall(), 2, 1);
-        setGameObject(new Wall(), 2, 3);
-        setGameObject(new Wall(), 2, 5);
-        setGameObject(new Wall(), 2, 7);
-        setGameObject(new Wall(), 2, 9);
-        setGameObject(new Wall(), 2, 11);
-        setGameObject(new Wall(), 2, 12);
-        setGameObject(new Bazooka(), 2, 14);
-        setGameObject(new Wall(), 3, 1);
-        setGameObject(new Wall(), 5, 4);
-        setGameObject(new Wall(), 5, 5);
-        setGameObject(new Wall(), 5, 13);
-        setGameObject(new Wall(), 5, 14);
-        setGameObject(new Wall(), 6, 4);
-        setGameObject(new Wall(), 6, 13);
-        setGameObject(new Wall(), 6, 14);
-        setGameObject(new Wall(), 7, 14);
-        setGameObject(new Wall(), 8, 0);
-        setGameObject(new Wall(), 8, 1);
-        setGameObject(new Wall(), 8, 8);
-        setGameObject(new Wall(), 8, 9);
-        setGameObject(new Wall(), 8, 10);
-        setGameObject(new Wall(), 9, 0);
-        setGameObject(new Wall(), 9, 9);
-        setGameObject(new Wall(), 9, 10);
-        setGameObject(new Wall(), 12, 0);
-        setGameObject(new Wall(), 12, 7);
-        setGameObject(new Wall(), 12, 8);
-        setGameObject(new Wall(), 12, 9);
-        setGameObject(new Wall(), 13, 0);
-        setGameObject(new Wall(), 13, 1);
-        setGameObject(new Finish(13, 12), 13, 12);
-        setGameObject(new Wall(), 13, 8);
-        setGameObject(new Wall(), 14, 0);
-        setGameObject(new Wall(), 14, 1);
-        setGameObject(new Wall(), 14, 2);
-        setGameObject(new Wall(), 14, 3);
+    public void build(String path, HashMap<String, GameObject> abbrs) {
+        JSONParser parser = new JSONParser();
+
+        try {     
+            File file = new File(path);
+            FileReader fr = new FileReader(file.getAbsolutePath());
+            JSONObject obj = (JSONObject) parser.parse(fr);
+            
+            JSONArray obstacles = (JSONArray) obj.get("obstacles");
+            JSONObject settings = (JSONObject) obj.get("settings");
+            
+            JSONArray first = (JSONArray) obstacles.get(0);
+            this.WIDTH = first.size();
+            this.HEIGHT = obstacles.size();
+            this.setPreferredSize(new Dimension(this.WIDTH * GameObject.SIZE, this.HEIGHT * GameObject.SIZE));
+            
+            JSONObject spawn = (JSONObject) settings.get("spawn");
+            this.player = new Player(Integer.parseInt(spawn.get("x").toString()), Integer.parseInt(spawn.get("y").toString()));
+            JSONObject finish = (JSONObject) settings.get("finish");
+            this.finish = new Finish(Integer.parseInt(finish.get("x").toString()), Integer.parseInt(finish.get("y").toString()));
+            
+            this.gameObjects =  new GameObject[this.HEIGHT][this.WIDTH];
+            
+            for(int y = 0; y < this.HEIGHT; y++) {
+                JSONArray xobstacles = (JSONArray) obstacles.get(y);
+                for(int x = 0; x < this.WIDTH; x++) {
+                    if(xobstacles.get(x).equals("*")) {
+                        setGameObject(abbrs.get(settings.get("ground")).getClass().newInstance(), y, x);
+                    } else {
+                        setGameObject(abbrs.get(xobstacles.get(x)).getClass().newInstance(), y, x);
+                    }
+                }
+            }
+        } catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

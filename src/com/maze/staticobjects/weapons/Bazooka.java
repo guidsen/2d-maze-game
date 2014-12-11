@@ -20,7 +20,7 @@ public class Bazooka extends Weapon {
     
     @Override
     public void onStand() {
+        super.onStand();
         JOptionPane.showMessageDialog(null, "Pak bazooka op.");
-        this.dissapear();
     }
 }
