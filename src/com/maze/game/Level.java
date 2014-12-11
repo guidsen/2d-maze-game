@@ -50,7 +50,7 @@ public class Level extends JComponent {
         
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
-                this.gameObjects[y][x].draw(g);
+                this.gameObjects[y][x].draw(g);                
             }
         }
         

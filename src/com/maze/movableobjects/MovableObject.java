@@ -10,6 +10,7 @@ import com.maze.game.GameObject;
 import com.maze.game.Level;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.StaticObject;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 /**
@@ -22,8 +23,7 @@ public abstract class MovableObject extends GameObject {
 
     public void move(int direction) {
         try {
-            int oldx = this.posX;
-            int oldy = this.posY;
+            GameObject old = Level.getGameObject(this.posY, this.posX);
 
             switch (direction) {
                 case KeyEvent.VK_LEFT:
@@ -40,59 +40,45 @@ public abstract class MovableObject extends GameObject {
                     break;
             }
             
-            if(this.posX != oldx || this.posY != oldy) {
-                this.draw(MazeGame.manager.level.getGraphics());
-                Level.paintGameObject(oldx, oldy);
-                Level.getGameObject(this.posY, this.posX).onStand();
+            if(this.posX != old.posX || this.posY != old.posY) {
+                Graphics g = MazeGame.manager.level.getGraphics();
+                this.draw(g);
+                
+                old.draw(g);
+                
+                GameObject obj = Level.getGameObject(this.posY, this.posX);
+                obj.onStand();
             }
         } catch (IndexOutOfBoundsException e) { }
     }
 
     public void left() {
-        GameObject obj = Level.getGameObject(this.posY, this.posX - 1);
-        if (obj instanceof StaticObject) {
-            StaticObject staticObj = (StaticObject) obj;
-            if (staticObj.onCollision()) {
-                this.posX -= 1;
-            }
-        } else {
-            this.posX -= 1;
-        }
+        moveObject(-1, 0);
     }
 
     public void right() {
-        GameObject obj = Level.getGameObject(this.posY, this.posX + 1);
-        if (obj instanceof StaticObject) {
-            StaticObject staticObj = (StaticObject) obj;
-            if (staticObj.onCollision()) {
-                this.posX += 1;
-            }
-        } else {
-            this.posX += 1;
-        }
+        moveObject(1, 0);
     }
 
     public void up() {
-        GameObject obj = Level.getGameObject(this.posY - 1, this.posX);
-        if (obj instanceof StaticObject) {
-            StaticObject staticObj = (StaticObject) obj;
-            if (staticObj.onCollision()) {
-                this.posY -= 1;
-            }
-        } else {
-            this.posY -= 1;
-        }
+        moveObject(0, -1);
     }
 
     public void down() {
-        GameObject obj = Level.getGameObject(this.posY + 1, this.posX);
+        moveObject(0, 1);
+    }
+    
+    public void moveObject(int x, int y) {
+        GameObject obj = Level.getGameObject(this.posY + y, this.posX + x);
         if (obj instanceof StaticObject) {
             StaticObject staticObj = (StaticObject) obj;
             if (staticObj.onCollision()) {
-                this.posY += 1;
+                this.posY += y;
+                this.posX += x;
             }
         } else {
-            this.posY += 1;
+            this.posY += y;
+            this.posX += x;
         }
     }
 }
