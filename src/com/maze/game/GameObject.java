@@ -38,5 +38,8 @@ public abstract class GameObject {
         this.posY = posY;
         this.posX = posX;
     }
-
+    
+    public void onStand() {
+        
+    }
 }

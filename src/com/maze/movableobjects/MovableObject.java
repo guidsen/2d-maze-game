@@ -21,25 +21,31 @@ public abstract class MovableObject extends GameObject {
     private int speed;
 
     public void move(int direction) {
-        Level.paintGameObject(this.posX, this.posY);
+        try {
+            int oldx = this.posX;
+            int oldy = this.posY;
 
-        switch (direction) {
-            case KeyEvent.VK_LEFT:
-                this.left();
-                break;
-            case KeyEvent.VK_UP:
-                this.up();
-                break;
-            case KeyEvent.VK_RIGHT:
-                this.right();
-                break;
-            case KeyEvent.VK_DOWN:
-                this.down();
-                break;
-        }
-
-        Level.paintGameObject(this.posX, this.posY);
-        this.draw(MazeGame.manager.level.getGraphics());
+            switch (direction) {
+                case KeyEvent.VK_LEFT:
+                    this.left();
+                    break;
+                case KeyEvent.VK_UP:
+                    this.up();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    this.right();
+                    break;
+                case KeyEvent.VK_DOWN:
+                    this.down();
+                    break;
+            }
+            
+            if(this.posX != oldx || this.posY != oldy) {
+                this.draw(MazeGame.manager.level.getGraphics());
+                Level.paintGameObject(oldx, oldy);
+                Level.getGameObject(this.posY, this.posX).onStand();
+            }
+        } catch (IndexOutOfBoundsException e) { }
     }
 
     public void left() {

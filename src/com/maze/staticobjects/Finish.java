@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,15 @@ public class Finish extends StaticObject {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        g.setColor(Color.GRAY);
+        g.fillRect(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
         g.setColor(Color.CYAN);
         g.fillOval(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+    }
+    
+    @Override
+    public void onStand() {
+        System.out.println("asd");
+        JOptionPane.showMessageDialog(null, "Naar volgende map of einde spel");
     }
 }

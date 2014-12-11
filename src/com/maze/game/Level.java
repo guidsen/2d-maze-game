@@ -128,7 +128,7 @@ public class Level extends JComponent {
         setGameObject(new Wall(), 12, 9);
         setGameObject(new Wall(), 13, 0);
         setGameObject(new Wall(), 13, 1);
-        setGameObject(new Wall(), 13, 2);
+        setGameObject(new Finish(13, 12), 13, 12);
         setGameObject(new Wall(), 13, 8);
         setGameObject(new Wall(), 14, 0);
         setGameObject(new Wall(), 14, 1);
