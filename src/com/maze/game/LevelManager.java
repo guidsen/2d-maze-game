@@ -5,6 +5,7 @@
  */
 package com.maze.game;
 
+import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.Ground;
 import com.maze.staticobjects.gadgets.Helper;
 import com.maze.staticobjects.obstacles.Wall;
@@ -12,6 +13,7 @@ import com.maze.staticobjects.weapons.Bazooka;
 import java.util.HashMap;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,10 +22,13 @@ import javax.swing.JFrame;
 public class LevelManager {
 
     private HashMap<String, GameObject> abbrs = new HashMap<>();
+    
     private int difficulty = 0;
+    private int current = 0;
+    private JFrame frame;
+    
     public static Level level;
     private String basePath = "src/com/maze/levels/";
-    private JFrame frame;
     private String[][] levels = new String[][]{
         new String[] {
             "level00.json",
@@ -35,33 +40,48 @@ public class LevelManager {
         abbrs.put("W", new Wall());
         abbrs.put("G", new Ground());
         abbrs.put("B", new Bazooka());
+        abbrs.put("F", new Finish());
 
         this.frame = frame;
     }
 
     public void load(int id) throws InstantiationException, IllegalAccessException {
-        this.level = new Level();
-        this.level.build(this.basePath + levels[this.difficulty][id], abbrs);
-        
-        for (int x = 0; x < 15; x++) {
-            for (int y = 0; y < 15; y++) {
-                
-                //this.level.setGameObject(new Ground(), x, y);
-//                for (String key : abbrs.keySet()) {
-//                    this.level.setGameObject(abbrs.get(key).getClass().newInstance(), x, y);
-//                }
-            }
+        if(this.level != null) {
+            this.frame.remove(this.level);
+            this.frame.revalidate();
         }
+        
+        this.level = new Level();
+        this.level.build(this.basePath + this.levels[this.difficulty][id], abbrs);
+
         this.frame.add(this.level);
+        this.frame.pack();
+        this.frame.revalidate();
+        this.frame.repaint();
     }
 
     public void start() {
         try {
-            this.load(0);
+            this.load(this.current);
         } catch (InstantiationException ex) {
             Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void next() {
+        if(this.current < this.levels[this.difficulty].length - 1) {
+            this.current++;
+            try {
+                this.load(this.current);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Einde spel");
         }
     }
 

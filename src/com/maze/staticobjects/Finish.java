@@ -6,6 +6,7 @@
 package com.maze.staticobjects;
 
 import static com.maze.game.GameObject.SIZE;
+import com.maze.game.MazeGame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,9 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class Finish extends StaticObject {
 
-    public Finish(int finishY, int finishX) {
+    public Finish() {
         super.color = Color.CYAN;
-        this.setPosition(finishY, finishX);
     }
 
     @Override
@@ -36,7 +36,6 @@ public class Finish extends StaticObject {
     
     @Override
     public void onStand() {
-        System.out.println("asd");
-        JOptionPane.showMessageDialog(null, "Naar volgende map of einde spel");
+        MazeGame.manager.next();
     }
 }

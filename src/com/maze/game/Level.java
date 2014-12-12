@@ -55,7 +55,6 @@ public class Level extends JComponent {
         }
         
         this.player.draw(g);
-        this.finish.draw(g);
     }
     
     public static void paintGameObject(int posY, int posX) {
@@ -102,8 +101,6 @@ public class Level extends JComponent {
             
             JSONObject spawn = (JSONObject) settings.get("spawn");
             this.player = new Player(Integer.parseInt(spawn.get("x").toString()), Integer.parseInt(spawn.get("y").toString()));
-            JSONObject finish = (JSONObject) settings.get("finish");
-            this.finish = new Finish(Integer.parseInt(finish.get("x").toString()), Integer.parseInt(finish.get("y").toString()));
             
             this.gameObjects =  new GameObject[this.HEIGHT][this.WIDTH];
             
@@ -112,8 +109,10 @@ public class Level extends JComponent {
                 for(int x = 0; x < this.WIDTH; x++) {
                     if(xobstacles.get(x).equals("*")) {
                         setGameObject(abbrs.get(settings.get("ground")).getClass().newInstance(), y, x);
-                    } else {
+                    } else if(abbrs.containsKey(xobstacles.get(x))){
                         setGameObject(abbrs.get(xobstacles.get(x)).getClass().newInstance(), y, x);
+                    } else {
+                        System.out.println("Bestaat niet: "+x);
                     }
                 }
             }
