@@ -31,7 +31,15 @@ public class Player extends MovableObject {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g.setColor(Color.BLACK);
+        if(weapon == null) {
+            g.setColor(Color.BLACK);
+        } else {
+            g.setColor(weapon.getColor());
+        }
         g.fillOval(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+    }
+    
+    public void addWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 }

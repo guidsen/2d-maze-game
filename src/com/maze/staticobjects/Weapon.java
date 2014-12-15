@@ -6,6 +6,7 @@
 package com.maze.staticobjects;
 
 import com.maze.game.Direction;
+import com.maze.game.MazeGame;
 import java.util.ArrayList;
 
 /**
@@ -26,6 +27,8 @@ public abstract class Weapon extends StaticObject {
     
     @Override
     public void onStand() {
+        MazeGame.manager.level.player.addWeapon(this);
+        
         this.dissapear();
     }
 }

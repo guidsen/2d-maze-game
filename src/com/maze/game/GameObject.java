@@ -42,4 +42,8 @@ public abstract class GameObject {
     public void onStand() {
         
     }
+    
+    public Color getColor() {
+        return this.color;
+    }
 }
