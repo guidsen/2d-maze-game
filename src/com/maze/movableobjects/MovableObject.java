@@ -11,6 +11,7 @@ import com.maze.game.Level;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.StaticObject;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 /**
@@ -23,7 +24,7 @@ public abstract class MovableObject extends GameObject {
 
     public void move(int direction) {
         try {
-            GameObject old = Level.getGameObject(this.posY, this.posX);
+            GameObject old = Level.getGameObject(this.position);
 
             switch (direction) {
                 case KeyEvent.VK_LEFT:
@@ -40,13 +41,13 @@ public abstract class MovableObject extends GameObject {
                     break;
             }
             
-            if(this.posX != old.posX || this.posY != old.posY) {
+            if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
                 Graphics g = MazeGame.manager.level.getGraphics();
                 this.draw(g);
                 
                 old.draw(g);
                 
-                GameObject obj = Level.getGameObject(this.posY, this.posX);
+                GameObject obj = Level.getGameObject(this.position);
                 obj.onStand();
             }
         } catch (IndexOutOfBoundsException e) { }
@@ -69,16 +70,17 @@ public abstract class MovableObject extends GameObject {
     }
     
     public void moveObject(int x, int y) {
-        GameObject obj = Level.getGameObject(this.posY + y, this.posX + x);
+        GameObject obj = Level.getGameObject(new Point(this.position.x + x, this.position.y + y));
+        
         if (obj instanceof StaticObject) {
             StaticObject staticObj = (StaticObject) obj;
             if (staticObj.onCollision()) {
-                this.posY += y;
-                this.posX += x;
+                this.position.y += y;
+                this.position.x += x;
             }
         } else {
-            this.posY += y;
-            this.posX += x;
+            this.position.y += y;
+            this.position.x += x;
         }
     }
 }

@@ -8,6 +8,7 @@ package com.maze.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.util.Random;
 
@@ -19,8 +20,7 @@ public abstract class GameObject {
 
     public static final int SIZE = 30;
     private String imagePath;
-    public int posY;
-    public int posX;
+    public Point position;
     public int index;
     protected Color color;
 
@@ -31,12 +31,11 @@ public abstract class GameObject {
             color = Color.PINK;
         }
         g.setColor(color);
-        g.fillRect(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+        g.fillRect((int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, SIZE, SIZE);
     }
 
-    public void setPosition(int posY, int posX) {
-        this.posY = posY;
-        this.posX = posX;
+    public void setPosition(Point point) {
+        this.position = new Point((int)point.getX(), (int)point.getY());
     }
     
     public void onStand() {

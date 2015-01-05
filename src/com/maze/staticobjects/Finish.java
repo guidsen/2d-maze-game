@@ -29,9 +29,9 @@ public class Finish extends StaticObject {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         g.setColor(Color.GRAY);
-        g.fillRect(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+        g.fillRect((int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, SIZE, SIZE);
         g.setColor(Color.CYAN);
-        g.fillOval(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+        g.fillOval((int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, SIZE, SIZE);
     }
     
     @Override

@@ -11,6 +11,7 @@ import com.maze.staticobjects.Weapon;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 
 /**
@@ -23,7 +24,7 @@ public class Player extends MovableObject {
     private Weapon weapon;
 
     public Player(int spawnY, int spawnX) {
-        this.setPosition(spawnY, spawnX);
+        this.setPosition(new Point(spawnY, spawnX));
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Player extends MovableObject {
         } else {
             g.setColor(weapon.getColor());
         }
-        g.fillOval(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+        g.fillOval((int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, SIZE, SIZE);
     }
     
     public void addWeapon(Weapon weapon) {

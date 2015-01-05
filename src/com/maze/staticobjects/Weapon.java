@@ -21,10 +21,11 @@ public abstract class Weapon extends StaticObject {
 
     }
     
+    @Override
     public boolean onCollision() {
         return true;
     }
-    
+     
     @Override
     public void onStand() {
         MazeGame.manager.level.player.addWeapon(this);
