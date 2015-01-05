@@ -6,6 +6,7 @@
 package com.maze.staticobjects.obstacles;
 
 import static com.maze.game.GameObject.SIZE;
+import com.maze.game.Image;
 import com.maze.staticobjects.Obstacle;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,10 +16,7 @@ import java.awt.Graphics;
  * @author Guido
  */
 public class Wall extends Obstacle {
-
-    private String imagePath = "hodor.jpg";
-
     public Wall() {
-        super.color = Color.ORANGE;
+        super.image = new Image("muur.jpg");
     }
 }

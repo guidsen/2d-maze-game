@@ -5,6 +5,7 @@
  */
 package com.maze.staticobjects.weapons;
 
+import com.maze.game.Image;
 import com.maze.staticobjects.Weapon;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Bazooka extends Weapon {
     public Bazooka() {
-        super.color = Color.RED;
+        super.image = new Image("wapen.jpg");
     }
     
     @Override

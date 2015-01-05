@@ -6,6 +6,7 @@
 package com.maze.staticobjects;
 
 import com.maze.game.GameObject;
+import com.maze.game.Image;
 import java.awt.Color;
 
 /**
@@ -15,6 +16,6 @@ import java.awt.Color;
 public class Ground extends GameObject {
 
     public Ground() {
-        super.color = Color.GRAY;
+        super.image = new Image("grond.jpg");
     }
 }

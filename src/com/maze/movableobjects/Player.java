@@ -7,6 +7,7 @@ package com.maze.movableobjects;
 
 import com.maze.game.Direction;
 import static com.maze.game.GameObject.SIZE;
+import com.maze.game.Image;
 import com.maze.staticobjects.Weapon;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,15 +24,7 @@ public class Player extends MovableObject {
     private Weapon weapon;
 
     public Player(int spawnY, int spawnX) {
+        super.image = new Image("speler.jpg");
         this.setPosition(spawnY, spawnX);
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g.setColor(Color.BLACK);
-        g.fillOval(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
     }
 }

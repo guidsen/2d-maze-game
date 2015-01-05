@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
@@ -23,15 +24,15 @@ public abstract class GameObject {
     public int posX;
     public int index;
     protected Color color;
+    protected Image image;
 
     public void draw(Graphics g) {
-        if (color == null) {
-            Random r = new Random();
-            //color = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
-            color = Color.PINK;
+        if(this.image == null){
+            g.setColor(color);
+            g.fillRect(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
+        } else {
+            g.drawImage(this.image.getImage(), this.posX * SIZE, this.posY * SIZE, null);
         }
-        g.setColor(color);
-        g.fillRect(this.posX * SIZE, this.posY * SIZE, SIZE, SIZE);
     }
 
     public void setPosition(int posY, int posX) {
