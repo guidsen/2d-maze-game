@@ -5,11 +5,13 @@
  */
 package com.maze.game;
 
+import com.maze.movableobjects.MovableObject;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -27,12 +29,9 @@ public abstract class GameObject {
     protected Image image;
 
     public void draw(Graphics g) {
-        if(this.image == null){
-            g.setColor(color);
-            g.fillRect((int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, SIZE, SIZE);
-        } else {
+        
             g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
-        }
+        
     }
 
     public void setPosition(Point point) {

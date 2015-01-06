@@ -65,10 +65,8 @@ public class Level extends JComponent {
         ground.setPosition(point);
 
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
-
-        if(player.position.getY() == ground.position.getY() && player.position.getX() == ground.position.getY()) {
-            this.player.draw(MazeGame.manager.level.getGraphics());
-        }
+        
+        this.player.draw(MazeGame.manager.level.getGraphics());
     }
     
     public static GameObject getGameObject(Point point) {

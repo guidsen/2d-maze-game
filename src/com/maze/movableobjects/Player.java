@@ -21,7 +21,7 @@ import java.awt.RenderingHints;
  */
 public class Player extends MovableObject {
 
-    private Direction currentDirection;
+    //private Direction currentDirection;
     private Weapon weapon;
 
     public Player(Point spawn) {
@@ -31,5 +31,6 @@ public class Player extends MovableObject {
     
     public void addWeapon(Weapon weapon) {
         this.weapon = weapon;
+        super.image = weapon.playerImage;
     }
 }

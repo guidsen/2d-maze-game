@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class Bazooka extends Weapon {
     public Bazooka() {
-        super.image = new Image("wapen.jpg");
+        super.image = new Image("bazooka.jpg");
+        super.playerImage = new Image("speler_bazooka.jpg");
     }
     
     @Override

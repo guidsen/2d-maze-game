@@ -6,6 +6,7 @@
 package com.maze.staticobjects;
 
 import com.maze.game.Direction;
+import com.maze.game.Image;
 import com.maze.game.MazeGame;
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public abstract class Weapon extends StaticObject {
 
     private ArrayList<Projectile> projectiles;
+    public Image playerImage;
 
     public void fire(Direction direction) {
 
