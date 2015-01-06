@@ -8,8 +8,6 @@ package com.maze.game;
 import com.maze.movableobjects.Player;
 import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.Ground;
-import com.maze.staticobjects.obstacles.Wall;
-import com.maze.staticobjects.weapons.Bazooka;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,7 +15,6 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JComponent;
@@ -39,10 +36,6 @@ public class Level extends JComponent {
     private ArrayList<Map> maps;
     protected GameManager gameManager;
     private int difficulty;
-    private int spawnY = 0;
-    private int spawnX = 0;
-    private int finishY = 13;
-    private int finishX = 12;
     
     @Override
     public void paintComponent(Graphics g) {
@@ -70,11 +63,9 @@ public class Level extends JComponent {
     public void removeGameObject(Point point) {
         Ground ground = new Ground();
         ground.setPosition(point);
-        
+
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
-        
-        paintGameObject(ground.position);
-        
+
         if(player.position.getY() == ground.position.getY() && player.position.getX() == ground.position.getY()) {
             this.player.draw(MazeGame.manager.level.getGraphics());
         }
@@ -101,7 +92,7 @@ public class Level extends JComponent {
             this.setPreferredSize(new Dimension(this.WIDTH * GameObject.SIZE, this.HEIGHT * GameObject.SIZE));
             
             JSONObject spawn = (JSONObject) settings.get("spawn");
-            this.player = new Player(Integer.parseInt(spawn.get("x").toString()), Integer.parseInt(spawn.get("y").toString()));
+            this.player = new Player(new Point(Integer.parseInt(spawn.get("x").toString()), Integer.parseInt(spawn.get("y").toString())));
             
             this.gameObjects =  new GameObject[this.HEIGHT][this.WIDTH];
             

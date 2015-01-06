@@ -12,6 +12,7 @@ import com.maze.staticobjects.Weapon;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 
 /**
@@ -23,8 +24,12 @@ public class Player extends MovableObject {
     private Direction currentDirection;
     private Weapon weapon;
 
-    public Player(int spawnY, int spawnX) {
+    public Player(Point spawn) {
         super.image = new Image("speler.jpg");
-        this.setPosition(spawnY, spawnX);
+        this.setPosition(spawn);
+    }
+    
+    public void addWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 }
