@@ -13,6 +13,7 @@ import com.maze.staticobjects.weapons.Bazooka;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.io.File;
 import java.io.FileReader;
@@ -57,30 +58,30 @@ public class Level extends JComponent {
         this.player.draw(g);
     }
     
-    public static void paintGameObject(int posY, int posX) {
-        gameObjects[posY][posX].draw(MazeGame.manager.level.getGraphics());
+    public static void paintGameObject(Point point) {
+        gameObjects[(int)point.getY()][(int)point.getX()].draw(MazeGame.manager.level.getGraphics());
     }
 
-    public void setGameObject(GameObject object, int posY, int posX) {
-        gameObjects[posY][posX] = object;
-        object.setPosition(posY, posX);
+    public void setGameObject(GameObject object, Point point) {
+        gameObjects[(int)point.getY()][(int)point.getX()] = object;
+        object.setPosition(point);
     }
     
-    public void removeGameObject(int posY, int posX) {
+    public void removeGameObject(Point point) {
         Ground ground = new Ground();
-        ground.setPosition(posY, posX);
+        ground.setPosition(point);
         
-        gameObjects[posY][posX] = ground;
+        gameObjects[(int)point.getY()][(int)point.getX()] = ground;
         
-        paintGameObject(ground.posY, ground.posX);
+        paintGameObject(ground.position);
         
-        if(player.posY == ground.posY && player.posX == ground.posX) {
+        if(player.position.getY() == ground.position.getY() && player.position.getX() == ground.position.getY()) {
             this.player.draw(MazeGame.manager.level.getGraphics());
         }
     }
     
-    public static GameObject getGameObject(int posY, int posX) {
-        return gameObjects[posY][posX];
+    public static GameObject getGameObject(Point point) {
+        return gameObjects[(int)point.getY()][(int)point.getX()];
     }
     
     public void build(String path, HashMap<String, GameObject> abbrs) {
@@ -108,9 +109,9 @@ public class Level extends JComponent {
                 JSONArray xobstacles = (JSONArray) obstacles.get(y);
                 for(int x = 0; x < this.WIDTH; x++) {
                     if(xobstacles.get(x).equals("*")) {
-                        setGameObject(abbrs.get(settings.get("ground")).getClass().newInstance(), y, x);
+                        setGameObject(abbrs.get(settings.get("ground")).getClass().newInstance(), new Point(x, y));
                     } else if(abbrs.containsKey(xobstacles.get(x))){
-                        setGameObject(abbrs.get(xobstacles.get(x)).getClass().newInstance(), y, x);
+                        setGameObject(abbrs.get(xobstacles.get(x)).getClass().newInstance(), new Point(x, y));
                     } else {
                         System.out.println("Bestaat niet: "+x);
                     }

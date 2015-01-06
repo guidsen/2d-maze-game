@@ -12,7 +12,7 @@ package com.maze.game;
 public class Direction {
 
     public static void left(Level level) {
-        level.player.posY -= 1;
+        level.player.position.x -= 1;
     }
 
     public void right() {

@@ -20,6 +20,6 @@ public abstract class StaticObject extends GameObject {
     }
 
     public void dissapear() {
-        MazeGame.manager.level.removeGameObject(this.posY, this.posX);
+        MazeGame.manager.level.removeGameObject(this.position);
     }
 }
