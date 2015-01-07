@@ -25,6 +25,9 @@ public class ActionListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         this.manager.getLevel().player.move(e.getKeyCode());
+        if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            this.manager.getLevel().player.shoot();
+        }
     }
 
     @Override

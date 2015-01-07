@@ -45,15 +45,14 @@ public abstract class MovableObject extends GameObject {
                     break;
             }
             
+            Graphics g = MazeGame.manager.level.getGraphics();
             if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
-                Graphics g = MazeGame.manager.level.getGraphics();
-                this.draw(g);
-                
                 old.draw(g);
-                
+
                 GameObject obj = Level.getGameObject(this.position);
                 obj.onStand();
             }
+            this.draw(g);
         } catch (IndexOutOfBoundsException e) { }
     }
     

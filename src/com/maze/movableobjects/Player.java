@@ -6,8 +6,12 @@
 package com.maze.movableobjects;
 
 import com.maze.game.Direction;
+import com.maze.game.GameObject;
 import static com.maze.game.GameObject.SIZE;
 import com.maze.game.Image;
+import com.maze.game.Level;
+import com.maze.game.MazeGame;
+import com.maze.staticobjects.StaticObject;
 import com.maze.staticobjects.Weapon;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,13 +24,18 @@ import java.awt.RenderingHints;
  * @author Guido
  */
 public class Player extends MovableObject {
-
-    //private Direction currentDirection;
     private Weapon weapon;
 
     public Player(Point spawn) {
         super.image = new Image("speler.jpg");
         this.setPosition(spawn);
+    }
+    
+    public void shoot() {
+        if(this.weapon != null) {
+            Direction dir = ((MovableObject)this).getDirection();
+            this.weapon.fire(dir, this.position);            
+        }
     }
     
     public void addWeapon(Weapon weapon) {

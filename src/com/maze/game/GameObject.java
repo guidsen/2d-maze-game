@@ -29,13 +29,19 @@ public abstract class GameObject {
     protected Image image;
 
     public void draw(Graphics g) {
-        
-            g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
-        
+        g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
+    }
+    
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public void setPosition(Point point) {
         this.position = point;
+    }
+    
+    public Point getPosition() {
+        return this.position;
     }
     
     public void onStand() {

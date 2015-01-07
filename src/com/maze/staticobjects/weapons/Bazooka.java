@@ -19,10 +19,4 @@ public class Bazooka extends Weapon {
         super.image = new Image("bazooka.jpg");
         super.playerImage = new Image("speler_bazooka.jpg");
     }
-    
-    @Override
-    public void onStand() {
-        super.onStand();
-        JOptionPane.showMessageDialog(null, "Pak bazooka op.");
-    }
 }

@@ -66,7 +66,9 @@ public class Level extends JComponent {
 
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
         
-        this.player.draw(MazeGame.manager.level.getGraphics());
+        Graphics g = MazeGame.manager.level.getGraphics();
+        this.player.draw(g);
+        ground.draw(g);
     }
     
     public static GameObject getGameObject(Point point) {
