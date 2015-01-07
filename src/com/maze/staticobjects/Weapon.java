@@ -20,6 +20,7 @@ public abstract class Weapon extends StaticObject {
 
     private ArrayList<Projectile> projectiles;
     public Image playerImage;
+    public int bullets = 3;
 
     public void fire(Direction direction, Point bulletPosition) {
         boolean hit = false;
@@ -27,8 +28,8 @@ public abstract class Weapon extends StaticObject {
             GameObject next = direction.getNext(bulletPosition);
             if(next == null) {
                 hit = true;
-            } else if(next instanceof StaticObject) {
-                ((StaticObject)next).dissapear();
+            } else if(next instanceof Obstacle) {
+                ((Obstacle)next).dissapear();
                 hit = true;
             } else {
                 bulletPosition = next.getPosition();
