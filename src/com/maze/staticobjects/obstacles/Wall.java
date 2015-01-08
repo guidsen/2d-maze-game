@@ -10,6 +10,7 @@ import com.maze.game.Image;
 import com.maze.staticobjects.Obstacle;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 /**
  *
@@ -17,6 +18,8 @@ import java.awt.Graphics;
  */
 public class Wall extends Obstacle {
     public Wall() {
-        super.image = new Image("muur.jpg");
+        Random r = new Random();
+        int tree = r.nextInt(6) + 1;
+        super.image = new Image("tree"+tree+".png");
     }
 }

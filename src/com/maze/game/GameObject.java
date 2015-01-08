@@ -21,7 +21,7 @@ import java.util.Random;
  */
 public abstract class GameObject {
 
-    public static final int SIZE = 30;
+    public static final int SIZE = 50;
     private String imagePath;
     public Point position;
     public int index;

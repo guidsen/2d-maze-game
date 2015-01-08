@@ -27,7 +27,7 @@ public class Player extends MovableObject {
     private Weapon weapon;
 
     public Player(Point spawn) {
-        super.image = new Image("speler.jpg");
+        super.image = new Image("player_test.png");
         this.setPosition(spawn);
     }
     

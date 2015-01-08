@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class Finish extends StaticObject {
 
     public Finish() {
-        super.image = new Image("finish.jpg");
+        super.image = new Image("finish.png");
     }
 
     @Override

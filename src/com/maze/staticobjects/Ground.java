@@ -16,6 +16,6 @@ import java.awt.Color;
 public class Ground extends GameObject {
 
     public Ground() {
-        super.image = new Image("grond.jpg");
+        super.image = new Image("ground.png");
     }
 }
