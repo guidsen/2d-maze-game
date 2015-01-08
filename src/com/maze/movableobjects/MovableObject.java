@@ -8,6 +8,7 @@ package com.maze.movableobjects;
 import com.maze.game.Direction;
 import com.maze.game.GameObject;
 import static com.maze.game.GameObject.SIZE;
+import com.maze.game.Image;
 import com.maze.game.Level;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.StaticObject;
@@ -29,6 +30,7 @@ public abstract class MovableObject extends GameObject {
     public void move(int direction) {
         try {
             GameObject old = Level.getGameObject(this.position);
+            int oldAngle = this.direction.getAngle();
 
             switch (direction) {
                 case KeyEvent.VK_LEFT:
@@ -46,29 +48,18 @@ public abstract class MovableObject extends GameObject {
             }
             
             Graphics g = MazeGame.manager.level.getGraphics();
+            GameObject obj = Level.getGameObject(this.position);
             if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
+                this.draw(g);
                 old.draw(g);
-
-                GameObject obj = Level.getGameObject(this.position);
                 obj.onStand();
+            } else if(this.direction.getAngle() != oldAngle) {
+                obj.draw(g);
+                this.draw(g);
             }
-            this.draw(g);
         } catch (IndexOutOfBoundsException e) { }
     }
-    
-    public void draw(Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
-            
-        MovableObject obj = (MovableObject) this;
 
-        AffineTransform at = new AffineTransform();
-        at.translate((int)this.position.getX() * SIZE + SIZE / 2, (int)this.position.getY() * SIZE + SIZE / 2);
-        at.rotate(Math.toRadians(obj.getDirection().getAngle()));
-        at.translate(-SIZE / 2, -SIZE / 2);
-
-        g2d.drawImage(this.image.getImage(), at, null);
-    }
-    
     public Direction getDirection() {
         return this.direction;
     }
@@ -76,21 +67,25 @@ public abstract class MovableObject extends GameObject {
     public void left() {
         moveObject(-1, 0);
         this.direction.setDirection(KeyEvent.VK_LEFT);
+        super.image = new Image(super.path.replace("{direction}", "left"));
     }
 
     public void right() {
         moveObject(1, 0);
         this.direction.setDirection(KeyEvent.VK_RIGHT);
+        super.image = new Image(super.path.replace("{direction}", "right"));
     }
 
     public void up() {
         moveObject(0, -1);
         this.direction.setDirection(KeyEvent.VK_UP);
+        super.image = new Image(super.path.replace("{direction}", "up"));
     }
 
     public void down() {
         moveObject(0, 1);
         this.direction.setDirection(KeyEvent.VK_DOWN);
+        super.image = new Image(super.path.replace("{direction}", "down"));
     }
     
     public void moveObject(int x, int y) {

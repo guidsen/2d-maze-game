@@ -27,6 +27,7 @@ public abstract class GameObject {
     public int index;
     protected Color color;
     protected Image image;
+    protected String path;
 
     public void draw(Graphics g) {
         g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);

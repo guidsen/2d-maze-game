@@ -18,6 +18,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -27,7 +28,8 @@ public class Player extends MovableObject {
     private Weapon weapon;
 
     public Player(Point spawn) {
-        super.image = new Image("player_test.png");
+        super.path = "player_{direction}.png";
+        super.image = new Image(super.path.replace("{direction}", "down"));
         this.setPosition(spawn);
     }
     
