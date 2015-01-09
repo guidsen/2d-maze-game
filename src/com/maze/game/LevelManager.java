@@ -10,6 +10,7 @@ import com.maze.staticobjects.Ground;
 import com.maze.staticobjects.gadgets.Helper;
 import com.maze.staticobjects.obstacles.Wall;
 import com.maze.staticobjects.weapons.Bazooka;
+import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -54,7 +55,9 @@ public class LevelManager {
         this.level = new Level();
         this.level.build(this.basePath + this.levels[this.difficulty][id], abbrs);
 
-        this.frame.add(this.level);
+        this.frame.add(new TopBar(), BorderLayout.NORTH);
+        this.frame.add(this.level, BorderLayout.CENTER);
+        
         this.frame.pack();
         this.frame.revalidate();
         this.frame.repaint();

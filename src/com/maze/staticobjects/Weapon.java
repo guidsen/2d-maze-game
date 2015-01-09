@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public abstract class Weapon extends StaticObject {
 
     private ArrayList<Projectile> projectiles;
-    public Image playerImage;
     public int bullets = 3;
 
     public void fire(Direction direction, Point bulletPosition) {

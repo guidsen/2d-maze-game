@@ -28,8 +28,9 @@ public class Player extends MovableObject {
     private Weapon weapon;
 
     public Player(Point spawn) {
-        super.path = "player_{direction}.png";
-        super.image = new Image(super.path.replace("{direction}", "down"));
+        super.setPath("player_{direction}.png");
+        super.index = 2;
+        
         this.setPosition(spawn);
     }
     
@@ -42,6 +43,5 @@ public class Player extends MovableObject {
     
     public void addWeapon(Weapon weapon) {
         this.weapon = weapon;
-        super.image = weapon.playerImage;
     }
 }

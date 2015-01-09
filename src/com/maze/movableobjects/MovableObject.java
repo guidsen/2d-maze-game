@@ -46,16 +46,15 @@ public abstract class MovableObject extends GameObject {
                     break;
             }
             
-            Graphics g = MazeGame.manager.level.getGraphics();
             GameObject obj = Level.getGameObject(this.position);
+            
             if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
-                this.draw(g);
-                old.draw(g);
                 obj.onStand();
-            } else if(this.direction.getAngle() != oldAngle) {
-                obj.draw(g);
-                this.draw(g);
             }
+            
+            Level.queue(this);
+            Level.queue(old);
+            Level.queue(obj);
         } catch (IndexOutOfBoundsException e) { }
     }
 
@@ -96,5 +95,16 @@ public abstract class MovableObject extends GameObject {
             this.position.y += y;
             this.position.x += x;
         }
+    }
+    
+    public void setPath(String path) {
+        super.path = path;
+        
+        new Image(super.path.replace("{direction}", "up"));
+        new Image(super.path.replace("{direction}", "right"));
+        new Image(super.path.replace("{direction}", "down"));
+        new Image(super.path.replace("{direction}", "left"));
+        
+        super.image = new Image(super.path.replace("{direction}", "down"));
     }
 }

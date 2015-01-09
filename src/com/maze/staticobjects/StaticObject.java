@@ -15,6 +15,11 @@ import java.awt.Point;
  * @author Guido
  */
 public abstract class StaticObject extends GameObject {
+    
+    public StaticObject() {
+        super.index = 1;
+    }
+    
     public boolean onCollision() {
         return true;
     }

@@ -24,7 +24,7 @@ public abstract class GameObject {
     public static final int SIZE = 50;
     private String imagePath;
     public Point position;
-    public int index;
+    protected int index = 0;
     protected Color color;
     protected Image image;
     protected String path;
@@ -45,8 +45,12 @@ public abstract class GameObject {
         return this.position;
     }
     
+    public int getIndex() {
+        return this.index;
+    }
+    
     public void onStand() {
-        
+        // do nothing
     }
 
     public Color getColor() {

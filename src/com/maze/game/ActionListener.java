@@ -28,6 +28,8 @@ public class ActionListener implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_SPACE){
             this.manager.getLevel().player.shoot();
         }
+        
+        Level.drawQueue();
     }
 
     @Override

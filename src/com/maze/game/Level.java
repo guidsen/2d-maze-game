@@ -16,6 +16,7 @@ import java.awt.RenderingHints;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import javax.swing.JComponent;
 import org.json.simple.JSONArray;
@@ -31,6 +32,8 @@ public class Level extends JComponent {
     private static int HEIGHT;
     private static int WIDTH;
     private static GameObject[][] gameObjects;
+    private static ArrayList<GameObject> queue = new ArrayList<>();
+    
     public Player player;
     public Finish finish;
     private ArrayList<Map> maps;
@@ -39,16 +42,30 @@ public class Level extends JComponent {
     
     @Override
     public void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        Collections.sort(queue, new QueueOrderer());
+        for(GameObject obj : queue) {
+            obj.draw(g);
+        }
+    }
+    
+    public static void queue(GameObject obj) {
+        queue.add(obj);
+    }
+    
+    public static void queue(GameObject obj, int index) {
+        obj.index += index;
+        queue.add(obj);
+    }
+    
+    public static void drawQueue() {
+        Graphics g = MazeGame.manager.level.getGraphics();
         
-        for (int y = 0; y < this.HEIGHT; y++) {
-            for (int x = 0; x < this.WIDTH; x++) {
-                this.gameObjects[y][x].draw(g);                
-            }
+        Collections.sort(queue, new QueueOrderer());
+        for(GameObject obj : queue) {
+            obj.draw(g);
         }
         
-        this.player.draw(g);
+        queue.clear();
     }
     
     public static void paintGameObject(Point point) {
@@ -58,6 +75,7 @@ public class Level extends JComponent {
     public void setGameObject(GameObject object, Point point) {
         gameObjects[(int)point.getY()][(int)point.getX()] = object;
         object.setPosition(point);
+        this.queue(object);
     }
     
     public void removeGameObject(Point point) {
@@ -66,9 +84,8 @@ public class Level extends JComponent {
 
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
         
-        Graphics g = MazeGame.manager.level.getGraphics();
-        this.player.draw(g);
-        ground.draw(g);
+        this.queue(this.player, 2);
+        this.queue(ground, 2);
     }
     
     public static GameObject getGameObject(Point point) {
@@ -93,6 +110,7 @@ public class Level extends JComponent {
             
             JSONObject spawn = (JSONObject) settings.get("spawn");
             this.player = new Player(new Point(Integer.parseInt(spawn.get("x").toString()), Integer.parseInt(spawn.get("y").toString())));
+            this.queue(this.player);
             
             this.gameObjects =  new GameObject[this.HEIGHT][this.WIDTH];
             
