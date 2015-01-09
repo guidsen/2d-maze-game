@@ -28,8 +28,6 @@ public class Image {
                 BufferedImage image = ImageIO.read(file);
                 this.images.put(path, image);
                 
-                System.out.println(path);
-                
                 this.image = image;
             } catch(Exception e) {
                 System.out.println(e);
