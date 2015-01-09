@@ -53,7 +53,7 @@ public class Level extends JComponent {
     }
     
     public static void queue(GameObject obj, int index) {
-        obj.index += index;
+        obj.index = index;
         queue.add(obj);
     }
     
@@ -84,7 +84,6 @@ public class Level extends JComponent {
 
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
         
-        this.queue(this.player, 2);
         this.queue(ground, 2);
     }
     

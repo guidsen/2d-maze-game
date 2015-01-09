@@ -50,10 +50,10 @@ public abstract class MovableObject extends GameObject {
             
             if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
                 obj.onStand();
+                Level.queue(old);
             }
             
             Level.queue(this);
-            Level.queue(old);
             Level.queue(obj);
         } catch (IndexOutOfBoundsException e) { }
     }

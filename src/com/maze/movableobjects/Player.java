@@ -29,7 +29,7 @@ public class Player extends MovableObject {
 
     public Player(Point spawn) {
         super.setPath("player_{direction}.png");
-        super.index = 2;
+        super.index = 3;
         
         this.setPosition(spawn);
     }
