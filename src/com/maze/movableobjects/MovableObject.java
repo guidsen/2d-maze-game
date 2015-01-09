@@ -7,16 +7,13 @@ package com.maze.movableobjects;
 
 import com.maze.game.Direction;
 import com.maze.game.GameObject;
-import static com.maze.game.GameObject.SIZE;
 import com.maze.game.Image;
 import com.maze.game.Level;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.StaticObject;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.geom.AffineTransform;
 
 /**
  *
@@ -31,6 +28,8 @@ public abstract class MovableObject extends GameObject {
         try {
             GameObject old = Level.getGameObject(this.position);
             int oldAngle = this.direction.getAngle();
+            
+            this.direction.setDirection(direction);
 
             switch (direction) {
                 case KeyEvent.VK_LEFT:
@@ -66,25 +65,21 @@ public abstract class MovableObject extends GameObject {
 
     public void left() {
         moveObject(-1, 0);
-        this.direction.setDirection(KeyEvent.VK_LEFT);
         super.image = new Image(super.path.replace("{direction}", "left"));
     }
 
     public void right() {
         moveObject(1, 0);
-        this.direction.setDirection(KeyEvent.VK_RIGHT);
         super.image = new Image(super.path.replace("{direction}", "right"));
     }
 
     public void up() {
         moveObject(0, -1);
-        this.direction.setDirection(KeyEvent.VK_UP);
         super.image = new Image(super.path.replace("{direction}", "up"));
     }
 
     public void down() {
         moveObject(0, 1);
-        this.direction.setDirection(KeyEvent.VK_DOWN);
         super.image = new Image(super.path.replace("{direction}", "down"));
     }
     
