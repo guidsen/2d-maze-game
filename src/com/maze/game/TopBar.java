@@ -21,8 +21,8 @@ import javax.swing.JPanel;
  * @author Liam
  */
 public class TopBar extends JPanel {
-    private JPanel steps = new Steps();
-    private JPanel time = new Time();
+    private Steps steps = new Steps();
+    private Time time = new Time();
     
     public TopBar() {
         this.setLayout(new BorderLayout());
@@ -44,5 +44,9 @@ public class TopBar extends JPanel {
                 System.out.println("asd");
             }
        });
+    }
+    
+    public void reset() {
+        this.time.reset();
     }
 }

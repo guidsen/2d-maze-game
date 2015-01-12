@@ -27,6 +27,7 @@ public class LevelManager {
     private int difficulty = 0;
     private int current = 0;
     private JFrame frame;
+    public TopBar topBar = new TopBar();
     
     public static Level level;
     private String basePath = "src/com/maze/levels/";
@@ -55,7 +56,7 @@ public class LevelManager {
         this.level = new Level();
         this.level.build(this.basePath + this.levels[this.difficulty][id], abbrs);
 
-        this.frame.add(new TopBar(), BorderLayout.NORTH);
+        this.frame.add(this.topBar, BorderLayout.NORTH);
         this.frame.add(this.level, BorderLayout.CENTER);
         
         this.frame.pack();

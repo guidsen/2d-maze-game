@@ -19,20 +19,26 @@ import java.util.ArrayList;
 public abstract class Weapon extends StaticObject {
 
     private ArrayList<Projectile> projectiles;
-    public int bullets = 3;
+    public int ammo;
 
     public void fire(Direction direction, Point bulletPosition) {
-        boolean hit = false;
-        while(!hit) {
-            GameObject next = direction.getNext(bulletPosition);
-            if(next == null) {
-                hit = true;
-            } else if(next instanceof Obstacle) {
-                ((Obstacle)next).dissapear();
-                hit = true;
-            } else {
-                bulletPosition = next.getPosition();
+        if(this.ammo > 0) {
+            boolean hit = false;
+            while(!hit) {
+                GameObject next = direction.getNext(bulletPosition);
+                if(next == null) {
+                    hit = true;
+                } else if(next instanceof Obstacle) {
+                    Obstacle obstacle = ((Obstacle)next);
+                    if(obstacle.isDestroyable()) {
+                        obstacle.dissapear();
+                    }
+                    hit = true;
+                } else {
+                    bulletPosition = next.getPosition();
+                }
             }
+            this.ammo -= 1;
         }
     }
     

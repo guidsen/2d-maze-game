@@ -27,5 +27,6 @@ public class Finish extends StaticObject {
     @Override
     public void onStand() {
         MazeGame.manager.next();
+        MazeGame.manager.topBar.reset();
     }
 }

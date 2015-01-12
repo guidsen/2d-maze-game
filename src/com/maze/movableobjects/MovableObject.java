@@ -52,9 +52,10 @@ public abstract class MovableObject extends GameObject {
                 obj.onStand();
                 Level.queue(old);
             }
-            
+            if(oldAngle != this.direction.getAngle()) {
+                Level.queue(obj);
+            }
             Level.queue(this);
-            Level.queue(obj);
         } catch (IndexOutOfBoundsException e) { }
     }
 

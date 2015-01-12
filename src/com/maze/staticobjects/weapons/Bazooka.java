@@ -8,6 +8,7 @@ package com.maze.staticobjects.weapons;
 import com.maze.game.Image;
 import com.maze.staticobjects.Weapon;
 import java.awt.Color;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,5 +18,7 @@ import javax.swing.JOptionPane;
 public class Bazooka extends Weapon {
     public Bazooka() {
         super.image = new Image("bazooka.png");
+        Random random = new Random();
+        super.ammo = random.nextInt(3) + 1;
     }
 }

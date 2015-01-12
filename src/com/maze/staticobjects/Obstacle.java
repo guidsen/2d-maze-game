@@ -11,11 +11,15 @@ package com.maze.staticobjects;
  */
 public abstract class Obstacle extends StaticObject {
 
-    private boolean destroyable;
+    private boolean destroyable = true;
     private int damaged;
     private boolean blocked = true;
 
     public boolean onCollision() {
         return !this.blocked;
+    }
+    
+    public boolean isDestroyable() {
+        return this.destroyable;
     }
 }
