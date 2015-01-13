@@ -13,14 +13,15 @@ import java.awt.event.KeyEvent;
  * @author Guido
  */
 public class Direction {
+
     private int direction = KeyEvent.VK_DOWN;
     private int angle = 180;
     private int x = 0;
     private int y = 0;
-    
-    public void setDirection(int keyCode){
+
+    public void setDirection(int keyCode) {
         this.direction = keyCode;
-        switch(this.direction){
+        switch (this.direction) {
             case KeyEvent.VK_LEFT:
                 this.angle = 270;
                 this.x = -1;
@@ -43,16 +44,21 @@ public class Direction {
                 break;
         }
     }
-    
+
     public GameObject getNext(Point position) {
-        try{
+        try {
             GameObject obj = Level.getGameObject(new Point(position.x + x, position.y + y));
             return obj;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
-    
+
+    public GameObject getNext(Point position, int keyCode) {
+        this.setDirection(keyCode);
+        return this.getNext(position);
+    }
+
     public int getAngle() {
         return this.angle;
     }

@@ -25,22 +25,23 @@ import java.awt.event.KeyEvent;
  * @author Guido
  */
 public class Player extends MovableObject {
+
     private Weapon weapon;
 
     public Player(Point spawn) {
         super.setPath("player_{direction}.png");
         super.index = 3;
-        
+
         this.setPosition(spawn);
     }
-    
+
     public void shoot() {
-        if(this.weapon != null) {
-            Direction dir = ((MovableObject)this).getDirection();
-            this.weapon.fire(dir, this.position);            
+        if (this.weapon != null) {
+            Direction dir = ((MovableObject) this).getDirection();
+            this.weapon.fire(dir, this.position);
         }
     }
-    
+
     public void addWeapon(Weapon weapon) {
         this.weapon = weapon;
     }

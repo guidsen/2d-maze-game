@@ -43,6 +43,7 @@ public class LevelManager {
         abbrs.put("G", new Ground());
         abbrs.put("B", new Bazooka());
         abbrs.put("F", new Finish());
+        abbrs.put("H", new Helper());
 
         this.frame = frame;
     }
