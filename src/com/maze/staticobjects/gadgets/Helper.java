@@ -5,8 +5,16 @@
  */
 package com.maze.staticobjects.gadgets;
 
+import com.maze.game.Direction;
+import com.maze.game.GameObject;
+import com.maze.game.Image;
 import com.maze.staticobjects.Gadget;
+import com.maze.staticobjects.Obstacle;
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  *
@@ -14,9 +22,28 @@ import java.awt.Color;
  */
 public class Helper extends Gadget {
 
-    private Color color = Color.GREEN;
+    private Direction dir = new Direction();
+
+    public Helper() {
+        super.image = new Image("tree.png");
+    }
+
+    public void onStand() {
+        this.showRoute();
+    }
 
     public void showRoute() {
+        Stack objs = new Stack();
+        this.findRoute(this, objs);
+    }
 
+    public void findRoute(GameObject obj, Stack stack) {
+        GameObject next = dir.getNext(position, KeyEvent.VK_RIGHT);
+        if (!(next instanceof Obstacle)) {
+            stack.add(next);
+            findRoute(next, stack);
+        }
+
+        // return blabla
     }
 }

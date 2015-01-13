@@ -17,9 +17,10 @@ import java.util.Random;
  * @author Guido
  */
 public class Wall extends Obstacle {
+
     public Wall() {
         Random r = new Random();
         int tree = r.nextInt(6) + 1;
-        super.image = new Image("tree"+tree+".png");
+        super.image = new Image("tree" + tree + ".png");
     }
 }
