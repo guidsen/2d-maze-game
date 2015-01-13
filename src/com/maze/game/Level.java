@@ -33,10 +33,10 @@ public class Level extends JComponent {
     private static int WIDTH;
     private static GameObject[][] gameObjects;
     private static ArrayList<GameObject> queue = new ArrayList<>();
+    public static boolean loading = false;
     
     public Player player;
     public Finish finish;
-    private ArrayList<Map> maps;
     protected GameManager gameManager;
     private int difficulty;
     
@@ -49,12 +49,16 @@ public class Level extends JComponent {
     }
     
     public static void queue(GameObject obj) {
-        queue.add(obj);
+        if(!Level.loading) {
+            queue.add(obj);
+        }
     }
     
     public static void queue(GameObject obj, int index) {
-        obj.index = index;
-        queue.add(obj);
+        if(!Level.loading) {
+            obj.index = index;
+            queue.add(obj);
+        }
     }
     
     public static void drawQueue() {
@@ -65,7 +69,11 @@ public class Level extends JComponent {
             obj.draw(g);
         }
         
-        queue.clear();
+        if(!Level.loading){
+            queue.clear();
+        } else {
+            Level.loading = false;
+        }
     }
     
     public static void paintGameObject(Point point) {
@@ -92,6 +100,7 @@ public class Level extends JComponent {
     }
     
     public void build(String path, HashMap<String, GameObject> abbrs) {
+        Level.loading = false;
         JSONParser parser = new JSONParser();
 
         try {     
@@ -128,5 +137,6 @@ public class Level extends JComponent {
         } catch(Exception e){
             System.out.println(e);
         }
+        Level.loading = true;
     }
 }

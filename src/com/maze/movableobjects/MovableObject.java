@@ -47,7 +47,7 @@ public abstract class MovableObject extends GameObject {
             }
             
             GameObject obj = Level.getGameObject(this.position);
-            
+
             if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
                 obj.onStand();
                 Level.queue(old);
