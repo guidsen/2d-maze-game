@@ -28,9 +28,18 @@ public abstract class GameObject {
     protected Color color;
     protected Image image;
     protected String path;
+    private boolean lit = false;
 
     public void draw(Graphics g) {
-        g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
+        if(!this.lit) {
+            g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
+        } else {
+            g.fillRect((int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, 50, 50);
+        }
+    }
+    
+    public void setLit() {
+        this.lit = true;
     }
     
     public void setImage(Image image) {
