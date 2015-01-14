@@ -20,6 +20,6 @@ public class Bazooka extends Weapon {
         super.image = new Image("bazooka.png");
         super.name = "Bazooka";
         Random random = new Random();
-        super.ammo = random.nextInt(3) + 1;
+        super.ammo = random.nextInt(3) + 2;
     }
 }

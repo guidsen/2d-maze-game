@@ -54,7 +54,7 @@ public class Level extends JComponent {
         }
     }
     
-    public static void queue(GameObject obj, int index) {
+    public static void priorityQueue(GameObject obj, int index) {
         if(!Level.loading) {
             obj.index = index;
             queue.add(obj);
@@ -65,6 +65,7 @@ public class Level extends JComponent {
         Graphics g = MazeGame.manager.level.getGraphics();
         
         Collections.sort(queue, new QueueOrderer());
+        System.out.println(queue);
         for(GameObject obj : queue) {
             obj.draw(g);
         }
@@ -92,7 +93,7 @@ public class Level extends JComponent {
 
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
         
-        this.queue(ground, 2);
+        this.priorityQueue(ground, 2);
     }
     
     public static GameObject getGameObject(Point point) {
@@ -138,5 +139,16 @@ public class Level extends JComponent {
             System.out.println(e);
         }
         Level.loading = true;
+    }
+    
+    public void unLit() {
+        for(GameObject[] y : this.gameObjects) {
+            for(GameObject x : y) {
+                if(x.isLit()) {
+                    x.setLit(false);
+                    this.queue(x);
+                }
+            }
+        }
     }
 }

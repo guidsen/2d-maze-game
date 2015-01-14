@@ -33,12 +33,19 @@ public abstract class GameObject {
     public void draw(Graphics g) {
         g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
         if(this.lit) {
-            g.fillOval((int)this.position.getX() * SIZE + ((SIZE - 10) /2), (int)this.position.getY() * SIZE + ((SIZE - 10) /2), 10, 10);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2d.setColor(Color.YELLOW);
+            g2d.fillOval((int)this.position.getX() * SIZE + ((SIZE - 10) /2), (int)this.position.getY() * SIZE + ((SIZE - 10) /2), 10, 10);
         }
     }
     
-    public void setLit() {
-        this.lit = true;
+    public void setLit(boolean lit) {
+        this.lit = lit;
+    }
+    
+    public boolean isLit() {
+        return this.lit;
     }
     
     public void setImage(Image image) {

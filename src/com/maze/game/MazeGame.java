@@ -21,6 +21,7 @@ public class MazeGame {
      */
     public static void main(String[] args) {
         JFrame frame = new JFrame("Maze game");
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 

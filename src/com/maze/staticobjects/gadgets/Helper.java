@@ -9,6 +9,7 @@ import com.maze.game.Direction;
 import com.maze.game.GameObject;
 import com.maze.game.Image;
 import com.maze.game.Level;
+import com.maze.game.MazeGame;
 import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.Gadget;
 import com.maze.staticobjects.Obstacle;
@@ -30,6 +31,7 @@ public class Helper extends Gadget {
     private Direction dir = new Direction();
     private Integer[] directions = new Integer[]{ KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
     ArrayList<Stack<GameObject>> stacks = new ArrayList<>();
+    ArrayList<GameObject> leaves = new ArrayList<>();
     
     public void draw(Graphics g) {
         g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
@@ -42,16 +44,18 @@ public class Helper extends Gadget {
     public void onStand() {
         this.showRoute();
     }
-
+    
     public void showRoute() {
         Stack<GameObject> stack = new Stack<>();
         this.stacks = new ArrayList<>();
         Stack<GameObject> finalStack = this.findRoute(this, stack, 0);
-        for(GameObject road : finalStack) {
-            road.setLit();
-            Level.queue(road);
+        if(finalStack != null) {
+            MazeGame.manager.getLevel().unLit();
+            for(GameObject road : finalStack) {
+                road.setLit(true);
+                Level.queue(road);
+            }
         }
-        Level.drawQueue();
     }
 
     public Stack<GameObject> findRoute(GameObject obj, Stack<GameObject> stack, int index) {
@@ -60,20 +64,13 @@ public class Helper extends Gadget {
         for(int key : directions) {
             GameObject next = dir.getNext(obj.getPosition(), key);
             if(!stack.contains(next) && !(next instanceof Obstacle) && !(next instanceof Finish) && next != null) {
-                Stack<GameObject> subStack = findRoute(next, (Stack<GameObject>)stack.clone(), index+1);
-                if(index == 0) {
-                    stacks.add(subStack);
-                } else {
-                    if(subStack != null) {
-                        return subStack;
-                    }
-                }
+                findRoute(next, (Stack<GameObject>)stack.clone(), index+1);
             } else if(next instanceof Finish) {
-                return stack;
+                this.stacks.add(stack);
             }
         }
         
-        if(index == 0){
+        if(index == 0) {
             Collections.sort(this.stacks, new Comparator<Stack<GameObject>>() {
                 @Override
                 public int compare(Stack<GameObject> t, Stack<GameObject> t1) {
@@ -82,8 +79,8 @@ public class Helper extends Gadget {
                 
             });
             return this.stacks.get(0);
+        } else {
+            return null;
         }
-
-        return null;
     }
 }

@@ -36,7 +36,7 @@ public class LevelManager {
     private String basePath = "src/com/maze/levels/";
     private String[][] levels = new String[][]{
         new String[] {
-            "level00.json",
+            "level01.json",
             "level01.json"
         }
     };
