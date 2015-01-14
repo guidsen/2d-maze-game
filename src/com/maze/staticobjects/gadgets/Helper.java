@@ -14,6 +14,7 @@ import com.maze.staticobjects.Gadget;
 import com.maze.staticobjects.Obstacle;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,9 +30,13 @@ public class Helper extends Gadget {
     private Direction dir = new Direction();
     private Integer[] directions = new Integer[]{ KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
     ArrayList<Stack<GameObject>> stacks = new ArrayList<>();
+    
+    public void draw(Graphics g) {
+        g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
+    }
 
     public Helper() {
-        super.image = new Image("tree.png");
+        super.image = new Image("helper.png");
     }
 
     public void onStand() {

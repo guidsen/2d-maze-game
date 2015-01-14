@@ -31,10 +31,9 @@ public abstract class GameObject {
     private boolean lit = false;
 
     public void draw(Graphics g) {
-        if(!this.lit) {
-            g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
-        } else {
-            g.fillRect((int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, 50, 50);
+        g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
+        if(this.lit) {
+            g.fillOval((int)this.position.getX() * SIZE + ((SIZE - 10) /2), (int)this.position.getY() * SIZE + ((SIZE - 10) /2), 10, 10);
         }
     }
     
