@@ -65,7 +65,6 @@ public class Level extends JComponent {
         Graphics g = MazeGame.manager.level.getGraphics();
         
         Collections.sort(queue, new QueueOrderer());
-        System.out.println(queue);
         for(GameObject obj : queue) {
             obj.draw(g);
         }
