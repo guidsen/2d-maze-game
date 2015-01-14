@@ -17,7 +17,6 @@ import javax.swing.JPanel;
  */
 public class Title extends JPanel {
     public Title() {
-        this.setBackground(Color.YELLOW);
         this.setPreferredSize(new Dimension(150, 30));
         this.setLayout(new BorderLayout());
         

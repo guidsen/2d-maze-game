@@ -29,6 +29,5 @@ public class Finish extends StaticObject {
     public void onStand() {
         Level.loading = true;
         MazeGame.manager.next();
-        MazeGame.manager.topBar.reset();
     }
 }

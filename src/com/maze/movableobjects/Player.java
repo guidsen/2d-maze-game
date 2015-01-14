@@ -10,6 +10,7 @@ import com.maze.game.GameObject;
 import static com.maze.game.GameObject.SIZE;
 import com.maze.game.Image;
 import com.maze.game.Level;
+import com.maze.game.LevelManager;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.StaticObject;
 import com.maze.staticobjects.Weapon;
@@ -44,5 +45,6 @@ public class Player extends MovableObject {
 
     public void addWeapon(Weapon weapon) {
         this.weapon = weapon;
+        MazeGame.manager.infoBar.weapon.setWeapon(weapon);
     }
 }

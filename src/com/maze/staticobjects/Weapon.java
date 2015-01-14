@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public abstract class Weapon extends StaticObject {
 
     private ArrayList<Projectile> projectiles;
+    public String name;
     public int ammo;
 
     public void fire(Direction direction, Point bulletPosition) {
@@ -52,5 +53,9 @@ public abstract class Weapon extends StaticObject {
         MazeGame.manager.level.player.addWeapon(this);
         
         this.dissapear();
+    }
+    
+    public String getName() {
+        return this.name;
     }
 }

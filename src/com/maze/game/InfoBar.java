@@ -3,45 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.maze.game;
 
-import com.maze.topbar.Menu;
+import com.maze.infobar.WeaponInfo;
 import com.maze.topbar.Steps;
 import com.maze.topbar.Time;
 import com.maze.topbar.Title;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Liam
+ * @author Liam Hubers
  */
-public class TopBar extends JPanel {
-    private Steps steps = new Steps();
-    private Time time = new Time();
+public class InfoBar extends JPanel {
+    public WeaponInfo weapon = new WeaponInfo();
     
-    public TopBar() {
+    public InfoBar() {
         this.setLayout(new BorderLayout());
         
         JPanel con = new JPanel();
         
-        con.add(new Title(), BorderLayout.WEST);
-        con.add(this.steps, BorderLayout.CENTER);
-        con.add(this.time, BorderLayout.EAST);
+        con.add(this.weapon, BorderLayout.WEST);
         
         this.add(con, BorderLayout.WEST);
     }
     
-    public void addStep() {
-        this.steps.addStep();
-    }
-    
     public void reset() {
-        this.time.reset();
-        this.steps.reset();
+        this.weapon.reset();
     }
 }

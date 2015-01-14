@@ -49,6 +49,9 @@ public abstract class MovableObject extends GameObject {
             GameObject obj = Level.getGameObject(this.position);
 
             if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
+                if(this instanceof Player) {
+                    MazeGame.manager.topBar.addStep();
+                }
                 obj.onStand();
                 Level.queue(old);
             }

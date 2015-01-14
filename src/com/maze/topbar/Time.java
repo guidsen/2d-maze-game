@@ -25,11 +25,10 @@ public class Time extends JPanel {
     public JLabel label;
     
     public Time() {
-        this.setBackground(Color.GREEN);
         this.setPreferredSize(new Dimension(100, 30));
         this.setLayout(new BorderLayout());
         
-        this.label = new JLabel("0:00");
+        this.label = new JLabel("Tijd: 0:00");
         
         this.add(label, BorderLayout.WEST);
         

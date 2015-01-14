@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 public class Bazooka extends Weapon {
     public Bazooka() {
         super.image = new Image("bazooka.png");
+        super.name = "Bazooka";
         Random random = new Random();
         super.ammo = random.nextInt(3) + 1;
     }

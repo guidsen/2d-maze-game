@@ -29,7 +29,7 @@ public class TimerListener implements ActionListener {
         } else {
             this.seconds++;
         }
-        time.label.setText(this.minutes+":"+String.format("%02d", this.seconds));
+        time.label.setText("Tijd: "+this.minutes+":"+String.format("%02d", this.seconds));
     }   
     
     public void reset() {
