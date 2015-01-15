@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
  */
 public class WeaponInfo extends JPanel {
     private JLabel label;
-    private Weapon weapon;
     
     public WeaponInfo() {
         this.setLayout(new BorderLayout());
@@ -38,7 +37,7 @@ public class WeaponInfo extends JPanel {
     }
     
     public void reset() {
-        this.weapon = null;
+        GameManager.weapon = null;
         this.setText();
     }
 }

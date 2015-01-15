@@ -95,7 +95,13 @@ public class LevelManager {
                 Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Einde spel");
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Einde van het spel. Wilt u opnieuw beginnen?", "warning", 0);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                this.current = 0;
+                this.start();
+            } else {
+                MazeGame.frame.dispose();
+            }
         }
     }
     

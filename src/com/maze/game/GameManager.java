@@ -48,5 +48,6 @@ public class GameManager {
         seconds = 0;
         minutes = 0;
         MazeGame.manager.topBar.update();
+        MazeGame.manager.weaponInfo.reset();
     }
 }
