@@ -95,6 +95,18 @@ public class LevelManager {
             JOptionPane.showMessageDialog(null, "Einde spel");
         }
     }
+    
+    public void restart() {
+        try {
+            this.load(this.current);
+            this.topBar.reset();
+            this.infoBar.reset();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
 
     public static GameObject getObject() {
         return null;

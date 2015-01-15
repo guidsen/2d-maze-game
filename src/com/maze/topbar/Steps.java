@@ -33,7 +33,7 @@ public class Steps extends JPanel {
         this.steps++;
         this.label.setText(this.getText());
     }
-
+    
     public void addSteps(int num) {
         this.steps += num;
         this.label.setText(this.getText());

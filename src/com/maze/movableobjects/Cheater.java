@@ -17,7 +17,7 @@ public class Cheater extends MovableObject {
     private int fallback = 5;
 
     public Cheater() {
-        super.image = new Image("player_down.png");
+        super.image = new Image("guard.png");
     }
 
     public void onStand() {

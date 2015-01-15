@@ -17,18 +17,24 @@ import javax.swing.JPanel;
  */
 public class WeaponInfo extends JPanel {
     private JLabel label;
+    private Weapon weapon;
     
     public WeaponInfo() {
-        this.label = new JLabel("Geen wapen");
+        this.label = new JLabel("Wapen: geen");
         
         this.add(this.label, BorderLayout.WEST);
     }
     
     public void setWeapon(Weapon weapon) {
-        this.label.setText(weapon.getName());
+        this.weapon = weapon;
+        this.setText();
+    }
+    
+    public void setText() {
+        this.label.setText("Wapen: "+this.weapon.getName()+"("+this.weapon.ammo+")");
     }
     
     public void reset() {
-        this.label.setText("Geen wapen");
+        this.label.setText("Wapen: geen");
     }
 }

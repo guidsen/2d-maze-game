@@ -41,6 +41,8 @@ public abstract class Weapon extends StaticObject {
             }
             this.ammo -= 1;
         }
+        
+        MazeGame.manager.infoBar.weapon.setText();
     }
     
     @Override

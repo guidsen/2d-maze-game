@@ -41,5 +41,6 @@ public class Time extends JPanel {
         ActionListener[] listeners = this.timer.getActionListeners();
         TimerListener listener = (TimerListener)listeners[0];
         listener.reset();
+        this.label.setText("Tijd: 0:00");
     }
 }

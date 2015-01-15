@@ -43,6 +43,7 @@ public class Helper extends Gadget {
 
     public void onStand() {
         this.showRoute();
+        this.dissapear();
     }
     
     public void showRoute() {
