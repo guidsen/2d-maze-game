@@ -6,7 +6,6 @@
 package com.maze.staticobjects.weapons;
 
 import com.maze.game.Image;
-import com.maze.staticobjects.Weapon;
 import java.awt.Color;
 import java.util.Random;
 import javax.swing.JOptionPane;

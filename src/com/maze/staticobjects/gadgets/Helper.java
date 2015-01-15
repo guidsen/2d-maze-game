@@ -5,14 +5,13 @@
  */
 package com.maze.staticobjects.gadgets;
 
-import com.maze.game.Direction;
+import com.maze.movableobjects.Direction;
 import com.maze.game.GameObject;
 import com.maze.game.Image;
-import com.maze.game.Level;
+import com.maze.levels.Level;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.Finish;
-import com.maze.staticobjects.Gadget;
-import com.maze.staticobjects.Obstacle;
+import com.maze.staticobjects.obstacles.Obstacle;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Graphics;

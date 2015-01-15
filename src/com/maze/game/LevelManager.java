@@ -5,6 +5,9 @@
  */
 package com.maze.game;
 
+import com.maze.levels.Level;
+import com.maze.menu.TopBar;
+import com.maze.menu.WeaponInfo;
 import com.maze.movableobjects.Cheater;
 import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.Ground;
@@ -29,7 +32,7 @@ public class LevelManager {
     private int current = 0;
     private JFrame frame;
     public TopBar topBar = new TopBar();
-    public InfoBar infoBar = new InfoBar();
+    public WeaponInfo weaponInfo = new WeaponInfo();
 
     public static Level level;
     private String basePath = "src/com/maze/levels/";
@@ -59,10 +62,12 @@ public class LevelManager {
 
         this.level = new Level();
         this.level.build(this.basePath + this.levels[this.difficulty][id], abbrs);
+        
+        GameManager.reset();
 
         this.frame.add(this.topBar, BorderLayout.NORTH);
         this.frame.add(this.level, BorderLayout.CENTER);
-        this.frame.add(this.infoBar, BorderLayout.SOUTH);
+        this.frame.add(this.weaponInfo, BorderLayout.SOUTH);
 
         this.frame.pack();
         this.frame.revalidate();
@@ -84,8 +89,6 @@ public class LevelManager {
             this.current++;
             try {
                 this.load(this.current);
-                this.topBar.reset();
-                this.infoBar.reset();
             } catch (InstantiationException ex) {
                 Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
@@ -99,8 +102,6 @@ public class LevelManager {
     public void restart() {
         try {
             this.load(this.current);
-            this.topBar.reset();
-            this.infoBar.reset();
         } catch (InstantiationException ex) {
             Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 
-package com.maze.infobar;
+package com.maze.menu;
 
-import com.maze.staticobjects.Weapon;
+import com.maze.game.GameManager;
+import com.maze.staticobjects.weapons.Weapon;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -20,21 +22,23 @@ public class WeaponInfo extends JPanel {
     private Weapon weapon;
     
     public WeaponInfo() {
+        this.setLayout(new BorderLayout());
+        this.setBorder(new EmptyBorder(10, 5, 10, 5) );
         this.label = new JLabel("Wapen: geen");
         
         this.add(this.label, BorderLayout.WEST);
     }
     
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-        this.setText();
-    }
-    
     public void setText() {
-        this.label.setText("Wapen: "+this.weapon.getName()+"("+this.weapon.ammo+")");
+        if(GameManager.weapon == null) {
+            this.label.setText("Wapen: geen");
+        } else {
+            this.label.setText("Wapen: "+GameManager.weapon.getName()+"("+GameManager.weapon.ammo+")");
+        }
     }
     
     public void reset() {
-        this.label.setText("Wapen: geen");
+        this.weapon = null;
+        this.setText();
     }
 }

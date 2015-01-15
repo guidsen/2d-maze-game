@@ -5,6 +5,7 @@
  */
 package com.maze.game;
 
+import com.maze.levels.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;

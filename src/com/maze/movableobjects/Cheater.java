@@ -5,6 +5,7 @@
  */
 package com.maze.movableobjects;
 
+import com.maze.game.GameManager;
 import com.maze.game.Image;
 import com.maze.game.MazeGame;
 
@@ -21,7 +22,7 @@ public class Cheater extends MovableObject {
     }
 
     public void onStand() {
-        MazeGame.manager.topBar.addSteps(5);
+        GameManager.addSteps(5);
         this.dissapear();
     }
 

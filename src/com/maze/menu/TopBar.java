@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.game;
+package com.maze.menu;
 
-import com.maze.topbar.Steps;
-import com.maze.topbar.Time;
-import com.maze.topbar.Title;
+import com.maze.menu.Steps;
+import com.maze.menu.Time;
+import com.maze.menu.Title;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -31,17 +31,9 @@ public class TopBar extends JPanel {
 
         this.add(con, BorderLayout.WEST);
     }
-
-    public void addStep() {
-        this.steps.addStep();
-    }
-
-    public void addSteps(int num) {
-        this.steps.addSteps(num);
-    }
-
-    public void reset() {
-        this.time.reset();
-        this.steps.reset();
+    
+    public void update() {
+        this.steps.setText();
+        this.time.setText();
     }
 }

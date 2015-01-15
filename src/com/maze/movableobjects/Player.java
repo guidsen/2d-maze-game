@@ -5,9 +5,9 @@
  */
 package com.maze.movableobjects;
 
-import com.maze.game.Direction;
+import com.maze.game.GameManager;
 import com.maze.game.MazeGame;
-import com.maze.staticobjects.Weapon;
+import com.maze.staticobjects.weapons.Weapon;
 import java.awt.Point;
 
 /**
@@ -34,6 +34,6 @@ public class Player extends MovableObject {
 
     public void addWeapon(Weapon weapon) {
         this.weapon = weapon;
-        MazeGame.manager.infoBar.weapon.setWeapon(weapon);
+        GameManager.setWeapon(weapon);
     }
 }

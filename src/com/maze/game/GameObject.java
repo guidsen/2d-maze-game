@@ -68,6 +68,10 @@ public abstract class GameObject {
         return this.index;
     }
     
+    public void setIndex(int index) {
+        this.index = index;
+    }
+    
     public void onStand() {
         // do nothing
     }

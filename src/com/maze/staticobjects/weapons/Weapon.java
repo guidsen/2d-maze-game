@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.staticobjects;
+package com.maze.staticobjects.weapons;
 
-import com.maze.game.Direction;
+import com.maze.movableobjects.Direction;
 import com.maze.game.GameObject;
 import com.maze.game.Image;
 import com.maze.game.MazeGame;
+import com.maze.staticobjects.obstacles.Obstacle;
+import com.maze.staticobjects.StaticObject;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -42,7 +44,7 @@ public abstract class Weapon extends StaticObject {
             this.ammo -= 1;
         }
         
-        MazeGame.manager.infoBar.weapon.setText();
+        MazeGame.manager.weaponInfo.setText();
     }
     
     @Override

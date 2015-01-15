@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.game;
+package com.maze.levels;
 
+import com.maze.game.GameManager;
+import com.maze.game.GameObject;
+import com.maze.game.MazeGame;
+import com.maze.game.QueueOrderer;
 import com.maze.movableobjects.Player;
 import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.Ground;
@@ -56,7 +60,7 @@ public class Level extends JComponent {
     
     public static void priorityQueue(GameObject obj, int index) {
         if(!Level.loading) {
-            obj.index = index;
+            obj.setIndex(index);
             queue.add(obj);
         }
     }

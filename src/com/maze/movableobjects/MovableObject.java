@@ -5,11 +5,11 @@
  */
 package com.maze.movableobjects;
 
-import com.maze.game.Direction;
+import com.maze.game.GameManager;
 import com.maze.game.GameObject;
 import com.maze.game.Image;
-import com.maze.game.Level;
 import com.maze.game.MazeGame;
+import com.maze.levels.Level;
 import com.maze.staticobjects.StaticObject;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -49,7 +49,7 @@ public abstract class MovableObject extends GameObject {
 
             if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
                 if(this instanceof Player) {
-                    MazeGame.manager.topBar.addStep();
+                    GameManager.addStep();
                 }
                 obj.onStand();
                 Level.queue(old);

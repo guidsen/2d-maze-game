@@ -7,7 +7,7 @@ package com.maze.staticobjects;
 
 import static com.maze.game.GameObject.SIZE;
 import com.maze.game.Image;
-import com.maze.game.Level;
+import com.maze.levels.Level;
 import com.maze.game.MazeGame;
 import java.awt.Color;
 import java.awt.Graphics;

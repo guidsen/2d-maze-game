@@ -7,7 +7,6 @@ package com.maze.staticobjects.obstacles;
 
 import static com.maze.game.GameObject.SIZE;
 import com.maze.game.Image;
-import com.maze.staticobjects.Obstacle;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;

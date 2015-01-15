@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.topbar;
+package com.maze.menu;
 
+import com.maze.game.GameManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,10 +38,7 @@ public class Time extends JPanel {
         this.timer.start();
     }
     
-    public void reset() {
-        ActionListener[] listeners = this.timer.getActionListeners();
-        TimerListener listener = (TimerListener)listeners[0];
-        listener.reset();
-        this.label.setText("Tijd: 0:00");
+    public void setText() {
+        this.label.setText("Tijd: "+GameManager.minutes+":"+String.format("%02d", GameManager.seconds));
     }
 }

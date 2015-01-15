@@ -5,7 +5,7 @@
  */
 package com.maze.staticobjects.projectiles;
 
-import com.maze.staticobjects.Projectile;
+import com.maze.staticobjects.weapons.Projectile;
 
 /**
  *

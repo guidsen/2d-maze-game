@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.game;
+package com.maze.movableobjects;
 
+import com.maze.game.GameObject;
+import com.maze.levels.Level;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
