@@ -6,9 +6,6 @@
 package com.maze.staticobjects;
 
 import com.maze.game.GameObject;
-import com.maze.game.Level;
-import com.maze.game.MazeGame;
-import java.awt.Point;
 
 /**
  *
@@ -22,9 +19,5 @@ public abstract class StaticObject extends GameObject {
     
     public boolean onCollision() {
         return true;
-    }
-
-    public void dissapear() {
-        MazeGame.manager.level.removeGameObject(this.position);
     }
 }

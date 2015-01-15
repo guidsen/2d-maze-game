@@ -40,6 +40,10 @@ public abstract class GameObject {
         }
     }
     
+    public void dissapear() {
+        MazeGame.manager.level.removeGameObject(this.position);
+    }
+    
     public void setLit(boolean lit) {
         this.lit = lit;
     }

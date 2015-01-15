@@ -5,16 +5,24 @@
  */
 package com.maze.movableobjects;
 
+import com.maze.game.Image;
+import com.maze.game.MazeGame;
+
 /**
  *
  * @author Guido
  */
 public class Cheater extends MovableObject {
 
-    private int fallback;
+    private int fallback = 5;
 
-    public void dissapear() {
+    public Cheater() {
+        super.image = new Image("player_down.png");
+    }
 
+    public void onStand() {
+        MazeGame.manager.topBar.addSteps(5);
+        this.dissapear();
     }
 
     public void onCollision() {

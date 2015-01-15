@@ -11,7 +11,6 @@ import com.maze.game.Image;
 import com.maze.game.Level;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.StaticObject;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
@@ -58,7 +57,6 @@ public abstract class MovableObject extends GameObject {
             if(oldAngle != this.direction.getAngle()) {
                 Level.queue(obj);
             }
-            System.out.println("asd");
             Level.queue(this);
         } catch (IndexOutOfBoundsException e) { }
     }
