@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class ActionListener implements KeyListener {
 
     private LevelManager manager;
-    private ArrayList<Integer> keys;
 
     public ActionListener(LevelManager manager) {
         this.manager = manager;

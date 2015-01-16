@@ -147,8 +147,8 @@ public class Level extends JComponent {
     public void unLit() {
         for(GameObject[] y : this.gameObjects) {
             for(GameObject x : y) {
-                if(x.isLit()) {
-                    x.setLit(false);
+                if(x.isDot()) {
+                    x.setDot(false);
                     this.queue(x);
                 }
             }
