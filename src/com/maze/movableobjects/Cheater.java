@@ -7,7 +7,6 @@ package com.maze.movableobjects;
 
 import com.maze.game.GameManager;
 import com.maze.game.Image;
-import com.maze.game.MazeGame;
 
 /**
  *

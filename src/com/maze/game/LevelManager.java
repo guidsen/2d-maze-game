@@ -28,7 +28,6 @@ public class LevelManager {
 
     private HashMap<String, GameObject> abbrs = new HashMap<>();
 
-    private int difficulty = 0;
     private int current = 0;
     private JFrame frame;
     public TopBar topBar = new TopBar();
@@ -36,12 +35,11 @@ public class LevelManager {
 
     public static Level level;
     private String basePath = "src/com/maze/levels/";
-    private String[][] levels = new String[][]{
-        new String[]{
-            "level00.json",
-            "level01.json"
-        }
-    };
+    private String[] levels
+            = new String[]{
+                "level00.json",
+                "level01.json"
+            };
 
     public LevelManager(JFrame frame) {
         abbrs.put("W", new Wall());
@@ -61,9 +59,27 @@ public class LevelManager {
         }
 
         this.level = new Level();
-        this.level.build(this.basePath + this.levels[this.difficulty][id], abbrs);
-        
+        this.level.build(this.basePath + this.levels[id], abbrs);
+
         GameManager.reset();
+
+        this.frame.add(this.topBar, BorderLayout.NORTH);
+        this.frame.add(this.level, BorderLayout.CENTER);
+        this.frame.add(this.weaponInfo, BorderLayout.SOUTH);
+
+        this.frame.pack();
+        this.frame.revalidate();
+        this.frame.repaint();
+    }
+
+    public void loadTest() throws InstantiationException, IllegalAccessException {
+        if (this.level != null) {
+            this.frame.remove(this.level);
+            this.frame.revalidate();
+        }
+
+        this.level = new Level();
+        this.level.build(this.basePath + "testLevel.json", abbrs);
 
         this.frame.add(this.topBar, BorderLayout.NORTH);
         this.frame.add(this.level, BorderLayout.CENTER);
@@ -84,8 +100,18 @@ public class LevelManager {
         }
     }
 
+    public void startTest() {
+        try {
+            this.loadTest();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(LevelManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
     public void next() {
-        if (this.current < this.levels[this.difficulty].length - 1) {
+        if (this.current < this.levels.length - 1) {
             this.current++;
             try {
                 this.load(this.current);
@@ -96,7 +122,7 @@ public class LevelManager {
             }
         } else {
             int dialogResult = JOptionPane.showConfirmDialog(null, "Einde van het spel. Wilt u opnieuw beginnen?", "warning", 0);
-            if(dialogResult == JOptionPane.YES_OPTION){
+            if (dialogResult == JOptionPane.YES_OPTION) {
                 this.current = 0;
                 this.start();
             } else {
@@ -104,7 +130,7 @@ public class LevelManager {
             }
         }
     }
-    
+
     public void restart() {
         try {
             this.load(this.current);

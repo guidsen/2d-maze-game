@@ -5,9 +5,6 @@
  */
 package com.maze.game;
 
-import com.maze.staticobjects.obstacles.Wall;
-import java.awt.BorderLayout;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
