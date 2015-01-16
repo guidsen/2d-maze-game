@@ -11,9 +11,9 @@ import static com.maze.game.MazeGame.frame;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
