@@ -52,7 +52,7 @@ public class Helper extends Gadget {
         if(finalStack != null) {
             MazeGame.manager.getLevel().unLit();
             for(GameObject road : finalStack) {
-                road.setLit(true);
+                road.setDot(true);
                 Level.queue(road);
             }
         }

@@ -25,14 +25,13 @@ public abstract class GameObject {
     private String imagePath;
     public Point position;
     protected int index = 0;
-    protected Color color;
     protected Image image;
     protected String path;
-    private boolean lit = false;
+    private boolean dot = false;
 
     public void draw(Graphics g) {
         g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
-        if(this.lit) {
+        if(this.dot) {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2d.setColor(Color.YELLOW);
@@ -44,12 +43,12 @@ public abstract class GameObject {
         MazeGame.manager.level.removeGameObject(this.position);
     }
     
-    public void setLit(boolean lit) {
-        this.lit = lit;
+    public void setDot(boolean dot) {
+        this.dot = dot;
     }
     
-    public boolean isLit() {
-        return this.lit;
+    public boolean isDot() {
+        return this.dot;
     }
     
     public void setImage(Image image) {
@@ -74,9 +73,5 @@ public abstract class GameObject {
     
     public void onStand() {
         // do nothing
-    }
-
-    public Color getColor() {
-        return this.color;
     }
 }
