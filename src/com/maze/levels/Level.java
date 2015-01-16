@@ -38,9 +38,7 @@ public class Level extends JComponent {
     public static boolean loading = false;
     
     public Player player;
-    public Finish finish;
     protected GameManager gameManager;
-    private int difficulty;
     
     @Override
     public void paintComponent(Graphics g) {
@@ -91,7 +89,12 @@ public class Level extends JComponent {
     public void removeGameObject(Point point) {
         Ground ground = new Ground();
         ground.setPosition(point);
-
+        
+        GameObject old = this.getGameObject(point);
+        if(old.isDot()) {
+            ground.setDot(true);
+        }
+        
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
         
         this.priorityQueue(ground, 2);
@@ -142,7 +145,7 @@ public class Level extends JComponent {
         Level.loading = true;
     }
     
-    public void unLit() {
+    public void clearDots() {
         for(GameObject[] y : this.gameObjects) {
             for(GameObject x : y) {
                 if(x.isDot()) {

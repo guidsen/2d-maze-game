@@ -20,7 +20,6 @@ import java.util.ArrayList;
  */
 public abstract class Weapon extends StaticObject {
 
-    private ArrayList<Projectile> projectiles;
     public String name;
     public int ammo;
 
@@ -45,11 +44,6 @@ public abstract class Weapon extends StaticObject {
         }
         
         MazeGame.manager.weaponInfo.setText();
-    }
-    
-    @Override
-    public boolean onCollision() {
-        return true;
     }
      
     @Override

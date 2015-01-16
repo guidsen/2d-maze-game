@@ -40,7 +40,7 @@ public class Helper extends Gadget {
         super.image = new Image("helper.png");
     }
 
-    public void onStand() {
+    public void use() {
         this.showRoute();
         this.dissapear();
     }
@@ -50,7 +50,7 @@ public class Helper extends Gadget {
         this.stacks = new ArrayList<>();
         Stack<GameObject> finalStack = this.findRoute(this, stack, 0);
         if(finalStack != null) {
-            MazeGame.manager.getLevel().unLit();
+            MazeGame.manager.getLevel().clearDots();
             for(GameObject road : finalStack) {
                 road.setDot(true);
                 Level.queue(road);

@@ -141,10 +141,6 @@ public class LevelManager {
         }
     }
 
-    public static GameObject getObject() {
-        return null;
-    }
-
     public Level getLevel() {
         return this.level;
     }

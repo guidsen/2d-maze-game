@@ -11,6 +11,7 @@ import com.maze.game.Image;
 import com.maze.game.MazeGame;
 import com.maze.levels.Level;
 import com.maze.staticobjects.StaticObject;
+import com.maze.staticobjects.gadgets.Gadget;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
@@ -20,7 +21,6 @@ import java.awt.event.KeyEvent;
  */
 public abstract class MovableObject extends GameObject {
 
-    private int speed;
     private Direction direction = new Direction();
 
     public void move(int direction) {
@@ -52,6 +52,9 @@ public abstract class MovableObject extends GameObject {
                     GameManager.addStep();
                 }
                 obj.onStand();
+                if(obj instanceof Gadget) {
+                    ((Gadget)obj).use();
+                }
                 Level.queue(old);
             }
             if(oldAngle != this.direction.getAngle()) {
