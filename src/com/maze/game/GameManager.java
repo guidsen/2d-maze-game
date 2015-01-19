@@ -23,8 +23,8 @@ public class GameManager {
         MazeGame.manager.topBar.update();
     }
     
-    public static void addSteps(int steps) {
-        steps += steps;
+    public static void addSteps(int add) {
+        steps += add;
         MazeGame.manager.topBar.update();
     }
     
