@@ -9,6 +9,7 @@ import com.maze.game.GameManager;
 import com.maze.game.MazeGame;
 import com.maze.staticobjects.weapons.Weapon;
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +17,8 @@ import java.awt.Point;
  */
 public class Player extends MovableObject {
 
-    private Weapon weapon;
+    private ArrayList<Weapon> weapons = new ArrayList<>();
+    private int currentWeapon = -1;
 
     public Player(Point spawn) {
         super.setPath("player_{direction}.png");
@@ -26,14 +28,19 @@ public class Player extends MovableObject {
     }
 
     public void shoot() {
-        if (this.weapon != null) {
+        if (this.weapons.get(currentWeapon) != null) {
             Direction dir = ((MovableObject) this).getDirection();
-            this.weapon.fire(dir, this.position);
+            this.weapons.get(currentWeapon).fire(dir, this.position);
         }
     }
 
     public void addWeapon(Weapon weapon) {
-        this.weapon = weapon;
-        GameManager.setWeapon(weapon);
+        this.weapons.add(weapon);
+        this.currentWeapon = this.weapons.size() - 1;
+        GameManager.update();
+    }
+    
+    public ArrayList<Weapon> getWeapons() {
+        return this.weapons;
     }
 }

@@ -54,6 +54,10 @@ public abstract class GameObject {
     public void setImage(Image image) {
         this.image = image;
     }
+    
+    public Image getImage() {
+        return this.image;
+    }
 
     public void setPosition(Point point) {
         this.position = point;

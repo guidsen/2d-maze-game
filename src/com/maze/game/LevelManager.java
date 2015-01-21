@@ -61,7 +61,7 @@ public class LevelManager {
         this.level = new Level();
         this.level.build(this.basePath + this.levels[id], abbrs);
 
-        GameManager.reset();
+        GameManager.reset(this.level.getPlayer());
 
         this.frame.add(this.topBar, BorderLayout.NORTH);
         this.frame.add(this.level, BorderLayout.CENTER);

@@ -155,4 +155,8 @@ public class Level extends JComponent {
             }
         }
     }
+    
+    public Player getPlayer() {
+        return this.player;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package com.maze.game;
 
+import com.maze.movableobjects.Player;
 import com.maze.staticobjects.weapons.Weapon;
 
 /**
@@ -16,7 +17,7 @@ public class GameManager {
     public static int steps;
     public static int seconds = 0;
     public static int minutes = 0;
-    public static Weapon weapon;
+    public static Player player;
     
     public static void addStep() {
         steps++;
@@ -38,15 +39,15 @@ public class GameManager {
         MazeGame.manager.topBar.update();
     }
     
-    public static void setWeapon(Weapon currentWeapon) {
-        weapon = currentWeapon;
-        MazeGame.manager.weaponInfo.setText();
-    }
-
-    public static void reset() {
+    public static void reset(Player newPlayer) {
         steps = 0;
         seconds = 0;
         minutes = 0;
+        player = newPlayer;
+        update();
+    }
+    
+    public static void update() {
         MazeGame.manager.topBar.update();
         MazeGame.manager.weaponInfo.reset();
     }

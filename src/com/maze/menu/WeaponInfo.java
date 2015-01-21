@@ -9,6 +9,7 @@ package com.maze.menu;
 import com.maze.game.GameManager;
 import com.maze.staticobjects.weapons.Weapon;
 import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -29,15 +30,17 @@ public class WeaponInfo extends JPanel {
     }
     
     public void setText() {
-        if(GameManager.weapon == null) {
+        /*if(GameManager.player == null) {
             this.label.setText("Wapen: geen");
         } else {
             this.label.setText("Wapen: "+GameManager.weapon.getName()+"("+GameManager.weapon.ammo+")");
+        }*/
+        if(GameManager.player.getWeapons().size() != 0) {
+            this.label.setIcon(new ImageIcon(GameManager.player.getWeapons().get(0).getImage().getImage()));
         }
     }
     
     public void reset() {
-        GameManager.weapon = null;
         this.setText();
     }
 }
