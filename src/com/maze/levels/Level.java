@@ -42,23 +42,28 @@ public class Level extends JComponent {
     
     @Override
     public void paintComponent(Graphics g) {
+        clearQueue();
+        for(GameObject[] y : this.gameObjects) {
+            for(GameObject x : y) {
+                queue(x);
+            }
+        }
+        queue(this.player);
+        
         Collections.sort(queue, new QueueOrderer());
         for(GameObject obj : queue) {
             obj.draw(g);
         }
+        clearQueue();
     }
     
     public static void queue(GameObject obj) {
-        if(!Level.loading) {
-            queue.add(obj);
-        }
+        queue.add(obj);
     }
     
     public static void priorityQueue(GameObject obj, int index) {
-        if(!Level.loading) {
-            obj.setIndex(index);
-            queue.add(obj);
-        }
+        obj.setIndex(index);
+        queue.add(obj);
     }
     
     public static void drawQueue() {
@@ -69,11 +74,11 @@ public class Level extends JComponent {
             obj.draw(g);
         }
         
-        if(!Level.loading){
-            queue.clear();
-        } else {
-            Level.loading = false;
-        }
+        clearQueue();
+    }
+    
+    public static void clearQueue() {
+        queue.clear();
     }
     
     public static void paintGameObject(Point point) {
@@ -97,7 +102,7 @@ public class Level extends JComponent {
         
         gameObjects[(int)point.getY()][(int)point.getX()] = ground;
         
-        this.priorityQueue(ground, 2);
+        this.priorityQueue(ground, 3);
     }
     
     public static GameObject getGameObject(Point point) {
@@ -105,7 +110,6 @@ public class Level extends JComponent {
     }
     
     public void build(String path, HashMap<String, GameObject> abbrs) {
-        Level.loading = false;
         JSONParser parser = new JSONParser();
 
         try {     
@@ -142,7 +146,6 @@ public class Level extends JComponent {
         } catch(Exception e){
             System.out.println(e);
         }
-        Level.loading = true;
     }
     
     public void clearDots() {

@@ -18,6 +18,7 @@ public class Bazooka extends Weapon {
     public Bazooka() {
         super.image = new Image("bazooka.png");
         super.name = "Bazooka";
+        super.range = Weapon.INFINITE;
         Random random = new Random();
         super.ammo = random.nextInt(3) + 2;
     }

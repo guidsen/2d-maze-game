@@ -27,10 +27,10 @@ public class Player extends MovableObject {
         this.setPosition(spawn);
     }
 
-    public void shoot() {
+    public void useWeapon() {
         if (this.weapons.get(currentWeapon) != null) {
             Direction dir = ((MovableObject) this).getDirection();
-            this.weapons.get(currentWeapon).fire(dir, this.position);
+            this.weapons.get(currentWeapon).use(dir, this.position);
         }
     }
 
@@ -42,5 +42,17 @@ public class Player extends MovableObject {
     
     public ArrayList<Weapon> getWeapons() {
         return this.weapons;
+    }
+    
+    public void setCurrentWeapon(int weapon) {
+        this.currentWeapon = weapon - 1;
+    }
+    
+    public boolean isCurrentWeapon(Weapon weapon) {
+        try{
+            return weapon == this.weapons.get(this.currentWeapon);
+        } catch(Exception e) {
+            return false;
+        }
     }
 }

@@ -11,9 +11,9 @@ import com.maze.menu.WeaponInfo;
 import com.maze.movableobjects.Cheater;
 import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.Ground;
-import com.maze.staticobjects.gadgets.Helper;
-import com.maze.staticobjects.obstacles.Wall;
-import com.maze.staticobjects.weapons.Bazooka;
+import com.maze.staticobjects.gadgets.*;
+import com.maze.staticobjects.obstacles.*;
+import com.maze.staticobjects.weapons.*;
 import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -42,9 +42,11 @@ public class LevelManager {
             };
 
     public LevelManager(JFrame frame) {
-        abbrs.put("W", new Wall());
+        abbrs.put("T", new Tree());
+        abbrs.put("R", new Rock());
         abbrs.put("G", new Ground());
         abbrs.put("B", new Bazooka());
+        abbrs.put("A", new Axe());
         abbrs.put("F", new Finish());
         abbrs.put("H", new Helper());
         abbrs.put("C", new Cheater());

@@ -24,12 +24,16 @@ public class ActionListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        //Level.clearQueue();
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            MazeGame.manager.restart();
+            this.manager.restart();
         } else {
             this.manager.getLevel().player.move(e.getKeyCode());
             if(e.getKeyCode() == KeyEvent.VK_SPACE){
-                this.manager.getLevel().player.shoot();
+                this.manager.getLevel().player.useWeapon();
+            } else if(e.getKeyCode() >= KeyEvent.VK_0 && e.getKeyCode() <= KeyEvent.VK_9) {
+                this.manager.getLevel().player.setCurrentWeapon(Character.getNumericValue(e.getKeyChar()));
+                MazeGame.manager.weaponInfo.update();
             }
         }
         

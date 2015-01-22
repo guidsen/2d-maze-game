@@ -12,11 +12,12 @@ import java.util.Random;
  *
  * @author Guido
  */
-public class Wall extends Obstacle {
+public class Tree extends Obstacle {
 
-    public Wall() {
+    public Tree() {
         Random r = new Random();
         int tree = r.nextInt(6) + 1;
         super.image = new Image("tree" + tree + ".png");
+        super.setHealth(100);
     }
 }

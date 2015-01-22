@@ -24,8 +24,8 @@ public class GameManager {
         MazeGame.manager.topBar.update();
     }
     
-    public static void addSteps(int steps) {
-        steps += steps;
+    public static void addSteps(int add) {
+        steps += add;
         MazeGame.manager.topBar.update();
     }
     
@@ -36,7 +36,9 @@ public class GameManager {
         } else {
             GameManager.seconds++;
         }
-        MazeGame.manager.topBar.update();
+        if(MazeGame.manager.topBar != null) {
+            MazeGame.manager.topBar.update();
+        }
     }
     
     public static void reset(Player newPlayer) {

@@ -9,6 +9,12 @@ package com.maze.menu;
 import com.maze.game.GameManager;
 import com.maze.staticobjects.weapons.Weapon;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,25 +28,41 @@ public class WeaponInfo extends JPanel {
     private JLabel label;
     
     public WeaponInfo() {
-        this.setLayout(new BorderLayout());
-        this.setBorder(new EmptyBorder(10, 5, 10, 5) );
-        this.label = new JLabel("Wapen: geen");
-        
-        this.add(this.label, BorderLayout.WEST);
+        FlowLayout layout = new FlowLayout();
+        layout.setAlignment(FlowLayout.LEFT);
+        this.setBackground(new Color(240, 240, 240));
+        this.setLayout(layout);
+        this.setPreferredSize(new Dimension(300, 70));
     }
     
-    public void setText() {
-        /*if(GameManager.player == null) {
-            this.label.setText("Wapen: geen");
-        } else {
-            this.label.setText("Wapen: "+GameManager.weapon.getName()+"("+GameManager.weapon.ammo+")");
-        }*/
-        if(GameManager.player.getWeapons().size() != 0) {
-            this.label.setIcon(new ImageIcon(GameManager.player.getWeapons().get(0).getImage().getImage()));
+    public void paintComponent(Graphics g) {
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+        int index = 0;
+        for(Weapon weapon : GameManager.player.getWeapons()) {
+            if(GameManager.player.isCurrentWeapon(weapon)) {
+                g.setColor(Color.RED);
+                g.fillRect(index * 60 + 7, 7, 56, 56);
+            }
+            g.drawImage(weapon.getImage().getImage(), index * 60 + 10, 10, null);
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 36));
+            /* border om text */
+            g.setColor(Color.BLACK);
+            g.drawString(Integer.toString(index + 1), index * 60 + 27 + 1, 48);
+            g.drawString(Integer.toString(index + 1), index * 60 + 27 - 1, 48);
+            g.drawString(Integer.toString(index + 1), index * 60 + 27, 48 + 1);
+            g.drawString(Integer.toString(index + 1), index * 60 + 27, 48 - 1);
+            g.setColor(Color.WHITE);
+            g.drawString(Integer.toString(index + 1), index * 60 + 27, 48);
+            index++;
         }
     }
     
+    public void update() {
+        this.repaint();
+    }
+    
     public void reset() {
-        this.setText();
+        this.update();
     }
 }
