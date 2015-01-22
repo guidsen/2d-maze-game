@@ -27,7 +27,7 @@ public class Player extends MovableObject {
     }
 
     public void useWeapon() {
-        if (this.weapons.get(currentWeapon) != null) {
+        if(this.currentWeapon != -1 && this.weapons.get(currentWeapon) != null) {
             Direction dir = ((MovableObject) this).getDirection();
             this.weapons.get(currentWeapon).use(dir, this.position);
         }

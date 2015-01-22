@@ -15,9 +15,7 @@ import java.util.Random;
 public class Rock extends Obstacle {
 
     public Rock() {
-        Random r = new Random();
-        int rock = r.nextInt(5) + 1;
-        super.image = new Image("rock" + rock + ".png");
-        super.setHealth(200);
+        super.image = new Image("rock.png");
+        super.setHealth(250);
     }
 }

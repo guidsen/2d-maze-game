@@ -38,7 +38,8 @@ public class LevelManager {
     private String[] levels
             = new String[]{
                 "level00.json",
-                "level01.json"
+                "level01.json",
+                "level02.json"
             };
 
     public LevelManager(JFrame frame) {
