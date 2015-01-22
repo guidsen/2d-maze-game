@@ -18,18 +18,18 @@ public class Image {
 
     private static HashMap<String, BufferedImage> images = new HashMap<>();
     private BufferedImage image;
-    
-    public Image(String path){
-        if(this.images.get(path) == null) {
-            try{ 
+
+    public Image(String path) {
+        if (this.images.get(path) == null) {
+            try {
                 ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-                File file = new File(classLoader.getResource("com/maze/images/"+path).toURI());
+                File file = new File(classLoader.getResource("com/maze/images/" + path).toURI());
 
                 BufferedImage image = ImageIO.read(file);
                 this.images.put(path, image);
-                
+
                 this.image = image;
-            } catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println(e);
             }
         } else {

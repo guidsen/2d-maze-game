@@ -8,7 +8,6 @@ package com.maze.movableobjects;
 import com.maze.game.GameManager;
 import com.maze.game.GameObject;
 import com.maze.game.Image;
-import com.maze.game.MazeGame;
 import com.maze.levels.Level;
 import com.maze.staticobjects.StaticObject;
 import com.maze.staticobjects.gadgets.Gadget;
@@ -27,7 +26,7 @@ public abstract class MovableObject extends GameObject {
         try {
             GameObject old = Level.getGameObject(this.position);
             int oldAngle = this.direction.getAngle();
-            
+
             this.direction.setDirection(direction);
 
             switch (direction) {
@@ -44,24 +43,25 @@ public abstract class MovableObject extends GameObject {
                     this.down();
                     break;
             }
-            
+
             GameObject obj = Level.getGameObject(this.position);
 
-            if(this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
-                if(this instanceof Player) {
+            if (this.position.getX() != old.position.getX() || this.position.getY() != old.position.getY()) {
+                if (this instanceof Player) {
                     GameManager.addStep();
                 }
                 obj.onStand();
-                if(obj instanceof Gadget) {
-                    ((Gadget)obj).use();
+                if (obj instanceof Gadget) {
+                    ((Gadget) obj).use();
                 }
                 Level.queue(old);
             }
-            if(oldAngle != this.direction.getAngle()) {
+            if (oldAngle != this.direction.getAngle()) {
                 Level.queue(obj);
             }
             Level.queue(this);
-        } catch (IndexOutOfBoundsException e) { }
+        } catch (IndexOutOfBoundsException e) {
+        }
     }
 
     public Direction getDirection() {
@@ -87,10 +87,10 @@ public abstract class MovableObject extends GameObject {
         moveObject(0, 1);
         super.image = new Image(super.path.replace("{direction}", "down"));
     }
-    
+
     public void moveObject(int x, int y) {
         GameObject obj = Level.getGameObject(new Point(this.position.x + x, this.position.y + y));
-        
+
         if (obj instanceof StaticObject) {
             StaticObject staticObj = (StaticObject) obj;
             if (staticObj.onCollision()) {
@@ -102,15 +102,15 @@ public abstract class MovableObject extends GameObject {
             this.position.x += x;
         }
     }
-    
+
     public void setPath(String path) {
         super.path = path;
-        
+
         new Image(super.path.replace("{direction}", "up"));
         new Image(super.path.replace("{direction}", "right"));
         new Image(super.path.replace("{direction}", "down"));
         new Image(super.path.replace("{direction}", "left"));
-        
+
         super.image = new Image(super.path.replace("{direction}", "down"));
     }
 }

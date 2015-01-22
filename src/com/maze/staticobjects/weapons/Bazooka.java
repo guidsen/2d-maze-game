@@ -6,15 +6,14 @@
 package com.maze.staticobjects.weapons;
 
 import com.maze.game.Image;
-import java.awt.Color;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Guido
  */
 public class Bazooka extends Weapon {
+
     public Bazooka() {
         super.image = new Image("bazooka.png");
         super.name = "Bazooka";

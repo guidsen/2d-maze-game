@@ -6,7 +6,6 @@
 package com.maze.game;
 
 import com.maze.movableobjects.Player;
-import com.maze.staticobjects.weapons.Weapon;
 
 /**
  *
@@ -18,29 +17,29 @@ public class GameManager {
     public static int seconds = 0;
     public static int minutes = 0;
     public static Player player;
-    
+
     public static void addStep() {
         steps++;
         MazeGame.manager.topBar.update();
     }
-    
+
     public static void addSteps(int add) {
         steps += add;
         MazeGame.manager.topBar.update();
     }
-    
+
     public static void addSecond() {
-        if(GameManager.seconds == 59) {
+        if (GameManager.seconds == 59) {
             GameManager.minutes++;
             GameManager.seconds = 0;
         } else {
             GameManager.seconds++;
         }
-        if(MazeGame.manager.topBar != null) {
+        if (MazeGame.manager.topBar != null) {
             MazeGame.manager.topBar.update();
         }
     }
-    
+
     public static void reset(Player newPlayer) {
         steps = 0;
         seconds = 0;
@@ -48,7 +47,7 @@ public class GameManager {
         player = newPlayer;
         update();
     }
-    
+
     public static void update() {
         MazeGame.manager.topBar.update();
         MazeGame.manager.weaponInfo.reset();

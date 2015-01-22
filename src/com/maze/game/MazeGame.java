@@ -12,8 +12,10 @@ import javax.swing.JFrame;
  * @author Guido
  */
 public class MazeGame {
+
     public static LevelManager manager;
     public static JFrame frame;
+
     /**
      * @param args the command line arguments
      */

@@ -4,15 +4,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maze.movableobjects;
+package com.maze.tests;
 
+import com.maze.game.GameObject;
 import com.maze.game.LevelManager;
 import com.maze.game.MazeGame;
+import com.maze.movableobjects.Player;
 import static com.maze.game.MazeGame.frame;
+import com.maze.staticobjects.Ground;
+import com.maze.staticobjects.weapons.Bazooka;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,12 +25,10 @@ import org.junit.Test;
  *
  * @author Guido
  */
-public class PlayerMoveTest {
+public class PlayerTest {
 
     LevelManager manager;
-
-    public PlayerMoveTest() {
-    }
+    Player player;
 
     @Before
     public void setUp() {
@@ -36,7 +39,8 @@ public class PlayerMoveTest {
         MazeGame.manager = new LevelManager(frame);
         manager = MazeGame.manager;
         manager.startTest();
-        manager.getLevel().player.setPosition(new Point(1, 1));
+        player = manager.getLevel().player;
+        player.setPosition(new Point(1, 1));
     }
 
     /**
@@ -44,9 +48,9 @@ public class PlayerMoveTest {
      */
     @Test
     public void testMoveLeft() {
-        manager.getLevel().player.move(KeyEvent.VK_LEFT);
+        player.move(KeyEvent.VK_LEFT);
         Point expPos = new Point(0, 1);
-        Point endPos = manager.getLevel().player.getPosition();
+        Point endPos = player.getPosition();
         assertEquals(expPos, endPos);
     }
 
@@ -55,9 +59,9 @@ public class PlayerMoveTest {
      */
     @Test
     public void testMoveRight() {
-        manager.getLevel().player.move(KeyEvent.VK_RIGHT);
+        player.move(KeyEvent.VK_RIGHT);
         Point expPos = new Point(2, 1);
-        Point endPos = manager.getLevel().player.getPosition();
+        Point endPos = player.getPosition();
         assertEquals(expPos, endPos);
     }
 
@@ -66,9 +70,9 @@ public class PlayerMoveTest {
      */
     @Test
     public void testMoveUp() {
-        manager.getLevel().player.move(KeyEvent.VK_UP);
+        player.move(KeyEvent.VK_UP);
         Point expPos = new Point(1, 0);
-        Point endPos = manager.getLevel().player.getPosition();
+        Point endPos = player.getPosition();
         assertEquals(expPos, endPos);
     }
 
@@ -77,10 +81,24 @@ public class PlayerMoveTest {
      */
     @Test
     public void testMoveDown() {
-        manager.getLevel().player.move(KeyEvent.VK_DOWN);
+        player.move(KeyEvent.VK_DOWN);
         Point expPos = new Point(1, 2);
-        Point endPos = manager.getLevel().player.getPosition();
+        Point endPos = player.getPosition();
         assertEquals(expPos, endPos);
+    }
+
+    /**
+     * Test of use method, of class Weapon.
+     */
+    @Test
+    public void testUseWeapon() {
+        player.setPosition(new Point(0, 5));
+        player.addWeapon(new Bazooka());
+        player.setCurrentWeapon(1);
+        player.move(KeyEvent.VK_RIGHT);
+        player.useWeapon();
+        GameObject expObj = manager.getLevel().getGameObject(new Point(2, 5));
+        assertTrue(expObj instanceof Ground);
     }
 
 }

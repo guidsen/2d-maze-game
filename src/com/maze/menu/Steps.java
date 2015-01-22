@@ -7,7 +7,6 @@ package com.maze.menu;
 
 import com.maze.game.GameManager;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,6 +29,6 @@ public class Steps extends JPanel {
     }
 
     public void setText() {
-        this.label.setText("Stappen: "+GameManager.steps);
+        this.label.setText("Stappen: " + GameManager.steps);
     }
 }

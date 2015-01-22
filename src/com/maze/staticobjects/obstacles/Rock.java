@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.maze.staticobjects.obstacles;
 
 import com.maze.game.Image;
@@ -14,6 +13,7 @@ import java.util.Random;
  * @author Liam Hubers
  */
 public class Rock extends Obstacle {
+
     public Rock() {
         Random r = new Random();
         int rock = r.nextInt(5) + 1;

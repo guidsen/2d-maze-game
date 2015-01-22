@@ -7,7 +7,6 @@ package com.maze.staticobjects;
 
 import com.maze.game.GameObject;
 import com.maze.game.Image;
-import java.awt.Color;
 
 /**
  *

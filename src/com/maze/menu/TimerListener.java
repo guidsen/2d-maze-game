@@ -14,12 +14,13 @@ import java.awt.event.ActionListener;
  * @author Liam
  */
 public class TimerListener implements ActionListener {
+
     private Time time;
-    
+
     public TimerListener(Time time) {
         this.time = time;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         GameManager.addSecond();

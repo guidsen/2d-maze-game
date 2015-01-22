@@ -13,9 +13,7 @@ import com.maze.game.MazeGame;
 import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.obstacles.Obstacle;
 import com.sun.glass.events.KeyEvent;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,12 +26,12 @@ import java.util.Stack;
 public class Helper extends Gadget {
 
     private Direction dir = new Direction();
-    private Integer[] directions = new Integer[]{ KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
+    private Integer[] directions = new Integer[]{KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT};
     ArrayList<Stack<GameObject>> stacks = new ArrayList<>();
     ArrayList<GameObject> leaves = new ArrayList<>();
-    
+
     public void draw(Graphics g) {
-        g.drawImage(this.image.getImage(), (int)this.position.getX() * SIZE, (int)this.position.getY() * SIZE, null);
+        g.drawImage(this.image.getImage(), (int) this.position.getX() * SIZE, (int) this.position.getY() * SIZE, null);
     }
 
     public Helper() {
@@ -44,14 +42,14 @@ public class Helper extends Gadget {
         this.showRoute();
         this.dissapear();
     }
-    
+
     public void showRoute() {
         Stack<GameObject> stack = new Stack<>();
         this.stacks = new ArrayList<>();
         Stack<GameObject> finalStack = this.findRoute(this, stack, 0);
-        if(finalStack != null) {
+        if (finalStack != null) {
             MazeGame.manager.getLevel().clearDots();
-            for(GameObject road : finalStack) {
+            for (GameObject road : finalStack) {
                 road.setDot(true);
                 Level.queue(road);
             }
@@ -60,23 +58,23 @@ public class Helper extends Gadget {
 
     public Stack<GameObject> findRoute(GameObject obj, Stack<GameObject> stack, int index) {
         stack.add(obj);
-        
-        for(int key : directions) {
+
+        for (int key : directions) {
             GameObject next = dir.getNext(obj.getPosition(), key);
-            if(!stack.contains(next) && !(next instanceof Obstacle) && !(next instanceof Finish) && next != null) {
-                findRoute(next, (Stack<GameObject>)stack.clone(), index+1);
-            } else if(next instanceof Finish) {
+            if (!stack.contains(next) && !(next instanceof Obstacle) && !(next instanceof Finish) && next != null) {
+                findRoute(next, (Stack<GameObject>) stack.clone(), index + 1);
+            } else if (next instanceof Finish) {
                 this.stacks.add(stack);
             }
         }
-        
-        if(index == 0) {
+
+        if (index == 0) {
             Collections.sort(this.stacks, new Comparator<Stack<GameObject>>() {
                 @Override
                 public int compare(Stack<GameObject> t, Stack<GameObject> t1) {
                     return t.size() - t1.size();
                 }
-                
+
             });
             return this.stacks.get(0);
         } else {

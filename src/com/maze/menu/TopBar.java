@@ -5,9 +5,6 @@
  */
 package com.maze.menu;
 
-import com.maze.menu.Steps;
-import com.maze.menu.Time;
-import com.maze.menu.Title;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -31,7 +28,7 @@ public class TopBar extends JPanel {
 
         this.add(con, BorderLayout.WEST);
     }
-    
+
     public void update() {
         this.steps.setText();
         this.time.setText();

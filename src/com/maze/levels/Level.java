@@ -10,7 +10,6 @@ import com.maze.game.GameObject;
 import com.maze.game.MazeGame;
 import com.maze.game.QueueOrderer;
 import com.maze.movableobjects.Player;
-import com.maze.staticobjects.Finish;
 import com.maze.staticobjects.Ground;
 import java.awt.Dimension;
 import java.awt.Graphics;

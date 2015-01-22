@@ -28,7 +28,7 @@ public class LevelManager {
 
     private HashMap<String, GameObject> abbrs = new HashMap<>();
 
-    private int current = 0;
+    public int current = 0;
     private JFrame frame;
     public TopBar topBar = new TopBar();
     public WeaponInfo weaponInfo = new WeaponInfo();

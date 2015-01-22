@@ -6,7 +6,6 @@
 package com.maze.movableobjects;
 
 import com.maze.game.GameManager;
-import com.maze.game.MazeGame;
 import com.maze.staticobjects.weapons.Weapon;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -39,19 +38,19 @@ public class Player extends MovableObject {
         this.currentWeapon = this.weapons.size() - 1;
         GameManager.update();
     }
-    
+
     public ArrayList<Weapon> getWeapons() {
         return this.weapons;
     }
-    
+
     public void setCurrentWeapon(int weapon) {
         this.currentWeapon = weapon - 1;
     }
-    
+
     public boolean isCurrentWeapon(Weapon weapon) {
-        try{
+        try {
             return weapon == this.weapons.get(this.currentWeapon);
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

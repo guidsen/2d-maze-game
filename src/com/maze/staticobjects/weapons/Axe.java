@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.maze.staticobjects.weapons;
 
 import com.maze.game.Image;
-import java.util.Random;
 
 /**
  *
  * @author Liam Hubers
  */
-public class Axe extends Weapon{
+public class Axe extends Weapon {
+
     public Axe() {
         super.image = new Image("axe.png");
         super.name = "Hakbijl";
