@@ -56,7 +56,8 @@ public abstract class Weapon extends StaticObject {
                         }
                     }
                 }
-
+            }
+            if (this.ammo != Weapon.INFINITE) {
                 this.ammo -= 1;
             }
         }
